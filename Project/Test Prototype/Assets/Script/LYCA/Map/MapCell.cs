@@ -1,24 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unit;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
 
-namespace Map 
+namespace Map
 {
     [RequireComponent(typeof(BoxCollider2D))]
     public partial class MapCell : MonoBehaviour
     {
         [Header("Index")]
         public int index;
+        public Vector2 location; // 地图格子在二维数组中的位置
+
+        [Header("Contain")]
+        public Units unit; // 当前格子包含的单位，若无则为null
 
         public Vector2 Position => transform.position;
 
         public float CellSize => sr.bounds.size.x; // 假设格子为正方形，返回格子大小
 
-        public void CellRelease() { } // 当单位离开格子时调用
+        public void CellRelease() => unit = null; // 当单位离开格子时调用
 
-        public void CellRegister() { } // 当单位进入格子时调用
+        public void CellRegister(Units _unit)
+        {
+            unit = _unit;
+            unit.sr.sortingOrder = this.sr.sortingOrder;
+            unit.transform.SetParent(unitParent);
+            unit.transform.position = Position;
+            unit.location = location;
+            unit.cell = this;
+        }// 当单位进入格子时调用
     } // 地图单元储存信息
 
     public partial class MapCell
@@ -28,6 +37,7 @@ namespace Map
         public SpriteRenderer highlight;
         public SpriteRenderer indicator;
         public BoxCollider2D cd;
+        public Transform unitParent;
 
         private void OnValidate()
         {
@@ -36,6 +46,7 @@ namespace Map
 
         [Header("Parameter")]
         public float clickOffsetY = -0.1f;
+        private bool isEnable = false;
         private bool isClick = false;
 
         public void ClickDown()
@@ -55,11 +66,12 @@ namespace Map
             isClick = false;
         } // 点击抬起反馈
     } // 引用组件和参数
-    
+
     public partial class MapCell
     {
-        public void Initialize(int _index, Vector2 _position)
+        public void Initialize(int _index, Vector2 _position, Vector2 _location)
         {
+            location = _location;
             transform.position = _position;
             index = _index;
 
@@ -75,7 +87,7 @@ namespace Map
             Destroy(gameObject);
         }
     } // 地图单元生命周期(含初始化)
-    
+
     public partial class MapCell
     {
         [Header("Control")]
@@ -102,8 +114,28 @@ namespace Map
         private void OnMouseUp()
         {
             if (!isMouseEnter) return;
-            Debug.Log("Click");
+            //Debug.Log("Click");
             ClickUp();
-        } // 核心要素，鼠标点击检测
-    } // 鼠标检测
+            if (isEnable)
+            {
+                Central.Instance.ClickEvent?.Invoke(location);
+                if (unit != null) Central.Instance.UnitSelectEvent?.Invoke(unit); // 思考，这个真的要区分吗
+            } // 核心要素，鼠标点击检测
+        } // 鼠标检测
+    }
+
+    public partial class MapCell
+    {
+        public void EnableClick()
+        {
+            isEnable = true;
+            highlight.gameObject.SetActive(true);
+        }
+
+        public void DisableClick()
+        {
+            isEnable = false;
+            highlight.gameObject.SetActive(false);
+        }
+    } // 其他功能拓展
 }

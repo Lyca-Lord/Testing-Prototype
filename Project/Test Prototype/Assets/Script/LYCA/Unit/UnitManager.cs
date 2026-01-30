@@ -1,73 +1,59 @@
-using System;
+using Map;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Unit
 {
-    public partial class UnitManager : MonoBehaviour, IInitialiazer
+    public partial class UnitManager : MonoBehaviour
     {
-        [Header("Unit Info")]
-        public Unit currentUnit;
+        public static UnitManager Instance;
 
-        [Header("Action Sequence")]
-        public LinkedList<UnitCommand> actionSequence = new LinkedList<UnitCommand>();
+        [Header("Units")]
+        public List<Units> units;
+        public GameObject unitPrefab;
 
-        [Header("Lock Action")]
-        public static Action ActionSequenceStart;
-        public static Action ActionSequenceEnd;
-        public static bool isUnitActing = true;
-
-        public void Update()
+        private void Awake()
         {
-            if (isUnitActing) return;
-            if(actionSequence.Count > 0)
+            Instance = this;
+        }
+
+        private IEnumerator Start()
+        {
+            yield return new WaitForEndOfFrame();
+            //Units unit = FindFirstObjectByType<Units>();
+            //if (unit != null)
+            //{
+            //    unit.SetUp(MapManager.Instance.FindCellByLocation(new(0, 0)));
+            //    UnitCommandManager.Instance.PushCommand_Front(new(
+            //        unit,
+            //        ActionType.WaitForMove,
+            //        new(1, 1),
+            //        false
+            //        ));
+            //    Central.ActionStart?.Invoke();
+            //}
+            foreach(var i in units)
             {
-                ActionSequenceStart?.Invoke();
-                UnitCommand command = actionSequence.First.Value;
-                command.selectedUnit.GetCommand(command);
-                actionSequence.RemoveFirst();
-                isUnitActing = true;
+                i.SetUp(MapManager.Instance.FindCellByLocation(i.location));
             }
         }
 
-        public void CommandEnd()
+        public void CreateUnit(Vector2 _location, UnitInfo _info = null)
         {
-            ActionSequenceEnd?.Invoke();
-            if (actionSequence.Count <= 0)
-            {
-                isUnitActing = true;
-                ActionSequenceEnd?.Invoke();
-            }
-            else isUnitActing = false;
-        }
-
-        public void CommandStart()
-        {
-            isUnitActing = false;
-        }
-
-        public void Initialize()
-        {
-            Central.ActionEnd += CommandEnd;
-        }
-    } // 主体函数
-
-    public class UnitCommand
-    {
-        public Unit selectedUnit;
-        public List<Trait> traits;
-        public ActionType actionType;
-        public Vector2 position;
-        public bool canCancel;
-
-        public UnitCommand(Unit selectedUnit, ActionType actionType, Vector2 position, bool canCancel)
-        {
-            this.selectedUnit = selectedUnit;
-            this.traits = selectedUnit.unitElement.traits;
-            this.actionType = actionType;
-            this.position = position;
-            this.canCancel = canCancel;
+            MapCell cell = MapManager.Instance.FindCellByLocation(_location);
+            GameObject gameObject = Instantiate(unitPrefab);
+            Units unit = gameObject.GetComponent<Units>();
+            unit.SetUp(cell);
+            units.Add(unit);
         }
     }
+
+    public partial class UnitManager
+    {
+        [Header("Material")]
+        public Material normalMaterial = null;
+        public Material hitMaterial;
+    } // 巧思部分，把材质素材等放在这里
 }
