@@ -58,6 +58,7 @@ namespace Unit
         void Update()
         {
             stateMachine.currentState.Update();
+            //Debug.LogWarning(stateMachine.currentState.ToString());
         }
 
         public void GetCommand(UnitCommand _unitAction)
@@ -126,7 +127,7 @@ namespace Unit
             {
                 Time.timeScale = 0;
                 sr.material = UnitManager.Instance.hitMaterial;
-                yield return new WaitForSecondsRealtime(0.05f);
+                yield return new WaitForSecondsRealtime(0.025f);
                 sr.material = UnitManager.Instance.normalMaterial;
                 Time.timeScale = 1;
             }
@@ -142,6 +143,7 @@ namespace Unit
         public string name;
         public float duration;
         public float unscaleDuration;
+        public bool isCancel = false;
         public bool isClick = false;
         public Vector2 clickPosition;
 
@@ -151,9 +153,9 @@ namespace Unit
 
         public UnitState(string name, float duration, Units unit, StateMachine stateMachine)
         {
+            this.unit = unit;
             this.name = name;
             this.duration = duration;
-            this.unit = unit;
             this.stateMachine = stateMachine;
         }
 
@@ -161,6 +163,7 @@ namespace Unit
         {
             // 到时候补齐animator
             isClick = false;
+            isCancel = false;
         }
 
         public virtual void Exit()
@@ -178,6 +181,11 @@ namespace Unit
             clickPosition = _position;
             isClick = true;
         }
+
+        public virtual void Cancel()
+        {
+            isCancel = true;
+        }
     } // 单位状态基类
 
     public class StateMachine
@@ -186,6 +194,7 @@ namespace Unit
 
         public void ChangeState(UnitState newState, Vector2 _position)
         {
+            Debug.Log(newState.ToString());
             if (currentState != null) currentState.Exit();
             currentState = newState;
             currentState.Enter(_position);
@@ -206,6 +215,7 @@ namespace Unit
     } // 行动类型枚举
 } // 状态机设定和行动类型
 
+// 需要记得补一下攻击效果
 namespace Unit
 {
     public class IdleState : UnitState
@@ -287,6 +297,7 @@ namespace Unit
         public override void Update()
         {
             base.Update();
+            stateMachine.ChangeState(unit.idleState, Vector2.zero);
         }
     } // 近战状态
 
@@ -324,6 +335,7 @@ namespace Unit
         {
             base.Enter(_position);
             Central.Instance.ClickEvent.AddListener(GetClick);
+            Central.Instance.CancelEvent.AddListener(Cancel);
             MapManager.Instance.EnableCellByRange(
                 unit.location,
                 unit.unitElement.currentSpeed,
@@ -333,19 +345,11 @@ namespace Unit
 
         public override void Exit()
         {
-            Central.Instance.ClickEvent.RemoveListener(GetClick);
-            UnitCommandManager.Instance.PushCommand_Front(new(
-                unit,
-                ActionType.Move,
-                clickPosition,
-                true
-                ));
             //Central.ActionStart?.Invoke();
             unit.ActionEnd(); // 延迟唤起行动结束事件，方便做行动插入
+            Central.Instance.ClickEvent.RemoveListener(GetClick);
+            Central.Instance.CancelEvent.RemoveListener(Cancel);
             MapManager.Instance.DisableAllCell();
-            unit.unitElement.DecreaseCurrentSpeed(
-                MapManager.Instance.Distance(unit.location, clickPosition, "Manhattan")
-                );
             base.Exit();
         }
 
@@ -353,7 +357,19 @@ namespace Unit
         {
             base.Update();
             if (ExitCondition())
+            {
+                UnitCommandManager.Instance.PushCommand_Front(new(
+                    unit,
+                    ActionType.Move,
+                    clickPosition,
+                    true
+                ));
+                unit.unitElement.DecreaseCurrentSpeed(
+                    MapManager.Instance.Distance(unit.location, clickPosition, "Manhattan")
+                    );
                 stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            }
+            if (isCancel) stateMachine.ChangeState(unit.idleState, Vector2.zero);
         }
 
         private bool ExitCondition()
@@ -373,20 +389,31 @@ namespace Unit
 
         public override void Enter(Vector2 _position)
         {
+            Debug.Log("进入近战瞄准阶段");
             base.Enter(_position);
             Central.Instance.ClickEvent.AddListener(GetClick);
+            Central.Instance.CancelEvent.AddListener(Cancel);
+            MapManager.Instance.EnableCellByRange(
+                unit.location,
+                1,
+                "Chebyshev"
+                );
         }
 
+        /// <summary>
+        /// 此处发生问题
+        /// Update中一直在反复执行ChangeState
+        /// 导致PushCommand_Front被执行多次，行动序列中出现重复指令
+        /// 发现错误 两个ChangeState在同一帧执行，导致状态在WaitForMelee和Idle之间交替切换
+        /// </summary>
         public override void Exit()
         {
             Central.Instance.ClickEvent.RemoveListener(GetClick);
-            UnitCommandManager.Instance.PushCommand_Front(new(
-                unit,
-                ActionType.Melee,
-                clickPosition,
-                true
-                ));
-            Central.Instance.ActionStart?.Invoke();
+            Central.Instance.CancelEvent.RemoveListener(Cancel);
+
+            unit.ActionEnd(); // 延迟唤起行动结束事件，方便做行动插入
+            //Central.Instance.ActionStart?.Invoke(); 
+            // 警告，这个代码非常错误，会导致ChangeState(idle)和ChangeState(melee)在同一帧内交替执行，形成死循环
             MapManager.Instance.DisableAllCell();
             base.Exit();
         }
@@ -394,7 +421,27 @@ namespace Unit
         public override void Update()
         {
             base.Update();
-            if (isClick) stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            if (ExitCondition())
+            {
+                UnitCommandManager.Instance.PushCommand_Front(new(
+                    unit,
+                    ActionType.Melee,
+                    clickPosition,
+                    true
+                ));
+                unit.unitElement.DecreaseAttackTime(1);
+                stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            }
+            if (isCancel) stateMachine.ChangeState(unit.idleState, Vector2.zero);
+        }
+
+        private bool ExitCondition()
+        {
+            if (!isClick) return false;
+            MapCell cell = MapManager.Instance.FindCellByLocation(clickPosition);
+            if (cell.unit == null) return false;
+            if (cell.unit == unit) return false;
+            return true;
         }
     } // 等待近战状态
 
@@ -408,18 +455,21 @@ namespace Unit
         {
             base.Enter(_position);
             Central.Instance.ClickEvent.AddListener(GetClick);
+            Central.Instance.CancelEvent.AddListener(Cancel);
+            MapManager.Instance.EnableCellByRange(
+                unit.location,
+                unit.unitElement.rangedRadius,
+                "Manhattan"
+                );
         }
 
         public override void Exit()
         {
             Central.Instance.ClickEvent.RemoveListener(GetClick);
-            UnitCommandManager.Instance.PushCommand_Front(new(
-                unit,
-                ActionType.Ranged,
-                clickPosition,
-                true
-                ));
-            Central.Instance.ActionStart?.Invoke();
+            Central.Instance.CancelEvent.RemoveListener(Cancel);
+            
+            unit.ActionEnd(); // 延迟唤起行动结束事件，方便做行动插入
+            //Central.Instance.ActionStart?.Invoke();
             MapManager.Instance.DisableAllCell();
             base.Exit();
         }
@@ -427,7 +477,27 @@ namespace Unit
         public override void Update()
         {
             base.Update();
-            if (isClick) stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            if (ExitCondition())
+            {
+                UnitCommandManager.Instance.PushCommand_Front(new(
+                    unit,
+                    ActionType.Ranged,
+                    clickPosition,
+                    true
+                ));
+                unit.unitElement.DecreaseAttackTime(1);
+                stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            }
+            if (isCancel) stateMachine.ChangeState(unit.idleState, Vector2.zero);
+        }
+
+        private bool ExitCondition()
+        {
+            if (!isClick) return false;
+            MapCell cell = MapManager.Instance.FindCellByLocation(clickPosition);
+            if (cell.unit == null) return false;
+            if (cell.unit == unit) return false;
+            return true;
         }
     } // 等待远程
 
@@ -441,6 +511,7 @@ namespace Unit
         {
             base.Enter(_position);
             Central.Instance.ClickEvent.AddListener(GetClick);
+            Central.Instance.CancelEvent.AddListener(Cancel);
             MapManager.Instance.EnableCellByRange(
                 unit.location,
                 1,
@@ -451,6 +522,7 @@ namespace Unit
         public override void Exit()
         {
             Central.Instance.ClickEvent.RemoveListener(GetClick);
+            Central.Instance.CancelEvent.RemoveListener(Cancel);
             UnitManager.Instance.CreateUnit(clickPosition);
 
             unit.ActionEnd(); // 延迟唤起行动结束事件，方便做行动插入
@@ -463,6 +535,7 @@ namespace Unit
             base.Update();
             if (ExitCondition())
                 stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            if (isCancel) stateMachine.ChangeState(unit.idleState, Vector2.zero);
         }
 
         private bool ExitCondition()
@@ -494,6 +567,7 @@ namespace Unit
         {
             base.Enter(_position);
             Central.Instance.ClickEvent.AddListener(GetClick);
+            Central.Instance.CancelEvent.AddListener(Cancel);
             isBonusMove = _position.x > 0.5f; // 约定大于0.5为true，小于等于0.5为false
             movePoint = isBonusMove ? unit.unitElement.tacticSpeed : unit.unitElement.currentTacticSpeed;
 
@@ -507,6 +581,7 @@ namespace Unit
         public override void Exit()
         {
             Central.Instance.ClickEvent.RemoveListener(GetClick);
+            Central.Instance.CancelEvent.RemoveListener(Cancel);
             UnitCommandManager.Instance.PushCommand_Front(new(
                 unit,
                 ActionType.Move,

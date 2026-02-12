@@ -1,0 +1,1188 @@
+fileFormatVersion: 2
+guid: aa4dd304551d16f4bbc6faefb60bf4ed
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Poker BG 0
+  - first:
+      213: 21300002
+    second: Poker BG 1
+  - first:
+      213: 21300004
+    second: Poker BG 2
+  - first:
+      213: 21300006
+    second: Poker BG 3
+  - first:
+      213: 21300008
+    second: Poker BG 4
+  - first:
+      213: 21300010
+    second: Poker BG 5
+  - first:
+      213: 21300012
+    second: Poker BG 6
+  - first:
+      213: 21300014
+    second: Number 14
+  - first:
+      213: 21300016
+    second: Number 1
+  - first:
+      213: 21300018
+    second: Number 2
+  - first:
+      213: 21300020
+    second: Number 3
+  - first:
+      213: 21300022
+    second: Number 4
+  - first:
+      213: 21300024
+    second: Number 5
+  - first:
+      213: 21300026
+    second: Number 6
+  - first:
+      213: 21300028
+    second: Number 7
+  - first:
+      213: 21300030
+    second: Number 8
+  - first:
+      213: 21300032
+    second: Number 9
+  - first:
+      213: 21300034
+    second: Number 10
+  - first:
+      213: 21300036
+    second: Number 11
+  - first:
+      213: 21300038
+    second: Number 12
+  - first:
+      213: 21300040
+    second: Number 13
+  - first:
+      213: 21300042
+    second: Icon Spade
+  - first:
+      213: 21300044
+    second: Icon Heart
+  - first:
+      213: 21300046
+    second: Icon Club
+  - first:
+      213: 21300048
+    second: Icon Diamond
+  - first:
+      213: 21300050
+    second: Mask Range
+  - first:
+      213: 21300052
+    second: Number 0
+  - first:
+      213: 21300054
+    second: Group Side
+  - first:
+      213: 21300056
+    second: Group BG 0
+  - first:
+      213: 21300058
+    second: Group BG Circle
+  - first:
+      213: 21300060
+    second: Pixel
+  - first:
+      213: 21300062
+    second: Pixel D
+  - first:
+      213: 21300064
+    second: Pixel U
+  - first:
+      213: 21300066
+    second: Pixel L
+  - first:
+      213: 21300068
+    second: Pixel R
+  - first:
+      213: 21300070
+    second: Item BG 0
+  - first:
+      213: 21300072
+    second: Item BG 1
+  - first:
+      213: 21300074
+    second: Item BG 2
+  - first:
+      213: 21300076
+    second: Item BG 3
+  - first:
+      213: 21300078
+    second: Group BG 1
+  - first:
+      213: 21300080
+    second: Poker BG 7
+  - first:
+      213: 21300082
+    second: Poker BG 8
+  - first:
+      213: 21300084
+    second: Poker BG 9
+  - first:
+      213: 21300086
+    second: Poker BG 10
+  - first:
+      213: 21300088
+    second: Poker BG 11
+  - first:
+      213: 21300090
+    second: Highlight
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 10
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Poker BG 1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.5, y: 22}
+        - {x: -15.5, y: -22}
+        - {x: 15.5, y: -22}
+        - {x: 15.5, y: 22}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46c10de8655b3964aacb3493b92535c1
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Poker BG 2
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 1
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: add066c1f920ceb4896ed345237a863d
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Poker BG 3
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 483c29654fd694046ba58eb5d3e172e8
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Poker BG 4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 46
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.5, y: 22}
+        - {x: -15.5, y: -22}
+        - {x: 15.5, y: -22}
+        - {x: 15.5, y: 22}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b11d2aceb7098440889465af6a8c2d5
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Poker BG 5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 46
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5992a8c8a41e2184da60db4bf18edbc2
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Poker BG 6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 46
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f1bb4fe3832c7847ac057d313c812f6
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 14
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 48
+        width: 4
+        height: 27
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2, y: 13.5}
+        - {x: -2, y: -13.5}
+        - {x: 2, y: -13.5}
+        - {x: 2, y: 13.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17285398c2cab504ca1bf59d8e88d2f5
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 1
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 70
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64283484b40bb2c4a9c34d29ad5666f3
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 64
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1c837eee9e26144fbc5222dd2938d75
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 3
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 58
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 596d212d1b416754a8d07e0be0c9f556
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 4
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 52
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a357470ab8d76948a9e618d72b6bcba
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 5
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 46
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a284cb498a67dc4ea29fa1efaa1ed1d
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 6
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 70
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54642d46166b10d48a38e7ebde8d966b
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 7
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 64
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65f53cfb48a51c84ab5bc40f34c79c44
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 8
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 58
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23fbaabdb52f52c40b612d62993ab345
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 9
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 52
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce7b64dfe4fa3fe4891d840d9458660a
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 10
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 46
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de4e2c37d0c185c46953d24518d21719
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 11
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 70
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6708858417d7a6441a3ebef4f560588e
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 12
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 64
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 456be06a31ff81d429f78cacce8eb199
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 13
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 58
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ccadc0d86f4cca4d8325c91fe1f0f4a
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon Spade
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 52
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 944605b702f8b7c43841d42ff7db4bae
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon Heart
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 46
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bc7bbf80156ffb4baae2480cabad9bd
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon Club
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 52
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbe15a0ead2a3dc44b4af90bb22f2fd6
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon Diamond
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 46
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4775bdf8d60c807408f9839b6aebdc69
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Number 0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 70
+        width: 5
+        height: 5
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eeeea2bead7139499714c6fa7fdaac7
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Group BG 0
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1
+        width: 30
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b85c9aa67d440643b2047512f7cf614
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 67
+        width: 1
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 682f3c7c2572c1d4191fd6f420148e71
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel D
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 67
+        width: 1
+        height: 1
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 626c78fd50ded6241be70fba76b09de1
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel U
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 67
+        width: 1
+        height: 1
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e8df55f326c2934fa40bf8686c99df5
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel L
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 67
+        width: 1
+        height: 1
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9649f9722a528646b1daa498c725e12
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pixel R
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 67
+        width: 1
+        height: 1
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45db50dcf5516c4478bdbe3494172500
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item BG 0
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35e2883d015e73448a584a8de166d2f4
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item BG 1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 46
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f41bbbceefe4645a8b32e11cff5a29
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item BG 2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 46
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4ed1ee185328e149ab067f54965cb71
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item BG 3
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 1
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: add74b4165b93024b91b272f6be5608e
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Group BG 1
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 91
+        width: 30
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c2c782446fb30f4f85bad80c3d8a6a7
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Poker BG 7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 91
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86fd3408924207d42b4221bd03a64379
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Poker BG 8
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 91
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02bd8f369ee2f784eb7e6181da11170b
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Poker BG 9
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 91
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32984bb4b8998d14f82498953a0876df
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Poker BG 10
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 91
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f23f379cb6ebc9c48af847a36f572c0c
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Poker BG 11
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 91
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ad038f0e17390c4991c3f5258b79a8e
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Highlight
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1
+        width: 44
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf426bcdf4322d74ebed1a72ce1654f5
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: b970f79de236257479243ac47311bea7
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Group BG 0: 21300056
+      Group BG 1: 21300078
+      Highlight: 21300090
+      Icon Club: 21300046
+      Icon Diamond: 21300048
+      Icon Heart: 21300044
+      Icon Spade: 21300042
+      Item BG 0: 21300070
+      Item BG 1: 21300072
+      Item BG 2: 21300074
+      Item BG 3: 21300076
+      Number 0: 21300052
+      Number 1: 21300016
+      Number 10: 21300034
+      Number 11: 21300036
+      Number 12: 21300038
+      Number 13: 21300040
+      Number 14: 21300014
+      Number 2: 21300018
+      Number 3: 21300020
+      Number 4: 21300022
+      Number 5: 21300024
+      Number 6: 21300026
+      Number 7: 21300028
+      Number 8: 21300030
+      Number 9: 21300032
+      Pixel: 21300060
+      Pixel D: 21300062
+      Pixel L: 21300066
+      Pixel R: 21300068
+      Pixel U: 21300064
+      Poker BG 1: 21300002
+      Poker BG 10: 21300086
+      Poker BG 11: 21300088
+      Poker BG 2: 21300004
+      Poker BG 3: 21300006
+      Poker BG 4: 21300008
+      Poker BG 5: 21300010
+      Poker BG 6: 21300012
+      Poker BG 7: 21300080
+      Poker BG 8: 21300082
+      Poker BG 9: 21300084
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

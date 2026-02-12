@@ -8,6 +8,7 @@ namespace Unit
     {
         [Header("Parameter")]
         public int tacticSpeed;
+        public int rangedRadius;
         public int health;
         public int attack;
         public int defend;
@@ -53,5 +54,7 @@ namespace Unit
         public void DecreaseCurrentTacticSpeed(int _tmp) => currentTacticSpeed -= _tmp;
 
         public void DecreaseHealth(int _tmp) => currentHealth -= _tmp;
+
+        public void DecreaseAttackTime(int _tmp) => currentAttackTime -= _tmp;
     } // 实时计算部分
 }

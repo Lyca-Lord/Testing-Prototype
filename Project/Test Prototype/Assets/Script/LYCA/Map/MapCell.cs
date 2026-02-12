@@ -114,7 +114,7 @@ namespace Map
         private void OnMouseUp()
         {
             if (!isMouseEnter) return;
-            //Debug.Log("Click");
+            Debug.Log("Click");
             ClickUp();
             if (isEnable)
             {

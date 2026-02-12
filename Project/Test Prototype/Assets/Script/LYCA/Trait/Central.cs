@@ -12,6 +12,7 @@ public class Central : MonoBehaviour
     [Header("For Action Sequence")]
     public UnityEvent ActionStart; // 在UnitCommandManager中调用
     public UnityEvent ActionEnd; // 在UnitCommandManager中调用
+    public UnityEvent ActionEndEarly;
 
     [Header("For Type Action")]
     public UnityEvent<UnitCommand> MoveAction;
@@ -28,9 +29,10 @@ public class Central : MonoBehaviour
     public UnityEvent<UnitCommand> MagicEnd;
 
     [Header("Mouse Event")]
-    public UnityEvent<Vector2> ClickEvent; 
-    public UnityEvent<Units> UnitSelectEvent; 
-    public UnityEvent ReleaseSelectEvent; 
+    public UnityEvent<Vector2> ClickEvent;
+    public UnityEvent<Units> UnitSelectEvent;
+    public UnityEvent ReleaseSelectEvent;
+    public UnityEvent CancelEvent;
 
     [Header("Card Action")]
     public UnityEvent CardPlayEvent;
@@ -56,10 +58,16 @@ public class Central : MonoBehaviour
         foreach (var i in ini) i.Initialize();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse1)) CancelEvent?.Invoke();
+    }
+
     private void InitUnityEvents()
     {
         ActionStart ??= new UnityEvent();
         ActionEnd ??= new UnityEvent();
+        ActionEndEarly ??= new UnityEvent();
 
         MoveAction ??= new UnityEvent<UnitCommand>();
         MeleeAction ??= new UnityEvent<UnitCommand>();

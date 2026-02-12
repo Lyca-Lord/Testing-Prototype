@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903a77a7b96f4d34380423dde37c5d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerUnit: 1
   unitElement: {fileID: 448627648538727328}
   location: {x: 0, y: 0}
   cell: {fileID: 0}
@@ -122,6 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b006f326d6da6744aff136b13f7d91b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tacticSpeed: 0
+  rangedRadius: 3
   health: 0
   attack: 0
   defend: 0
@@ -134,6 +137,13 @@ MonoBehaviour:
   - name: Trait_CanMove
     description: "\u8FD9\u4E2A\u5355\u4F4D\u53EF\u4EE5\u79FB\u52A8"
     icon: {fileID: 0}
+  - name: Trait_CanMelee
+    description: "\u8FD9\u4E2A\u5355\u4F4D\u53EF\u4EE5\u6267\u884C\u8FD1\u6218\u653B\u51FB"
+    icon: {fileID: 0}
+  - name: Trait_CanRanged
+    description: "\u8FD9\u4E2A\u5355\u4F4D\u53EF\u4EE5\u6267\u884C\u8FDC\u7A0B\u653B\u51FB"
+    icon: {fileID: 0}
   currentSpeed: 0
   currentHealth: 0
   currentAttackTime: 0
+  currentTacticSpeed: 0

@@ -1,0 +1,2303 @@
+fileFormatVersion: 2
+guid: f5c8fdaeb332e8042a4c71a322a71be4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Thumbnail Classic_0
+  - first:
+      213: 21300002
+    second: Thumbnail Classic_1
+  - first:
+      213: 21300004
+    second: Thumbnail Classic_2
+  - first:
+      213: 21300006
+    second: Thumbnail Classic_3
+  - first:
+      213: 21300008
+    second: Thumbnail Classic_4
+  - first:
+      213: 21300010
+    second: Thumbnail Classic_5
+  - first:
+      213: 21300012
+    second: Thumbnail Classic_6
+  - first:
+      213: 21300014
+    second: Thumbnail Classic_7
+  - first:
+      213: 21300016
+    second: Thumbnail Classic_8
+  - first:
+      213: 21300018
+    second: Thumbnail Classic_9
+  - first:
+      213: 21300020
+    second: Thumbnail Classic_10
+  - first:
+      213: 21300022
+    second: Thumbnail Classic_11
+  - first:
+      213: 21300024
+    second: Thumbnail Classic_12
+  - first:
+      213: 21300026
+    second: Thumbnail Classic_13
+  - first:
+      213: 21300028
+    second: Thumbnail Classic_14
+  - first:
+      213: 21300030
+    second: Thumbnail Classic_15
+  - first:
+      213: 21300032
+    second: Thumbnail Classic_16
+  - first:
+      213: 21300034
+    second: Thumbnail Classic_17
+  - first:
+      213: 21300036
+    second: Thumbnail Classic_18
+  - first:
+      213: 21300038
+    second: Thumbnail Classic_19
+  - first:
+      213: 21300040
+    second: Thumbnail Classic_20
+  - first:
+      213: 21300042
+    second: Thumbnail Classic_21
+  - first:
+      213: 21300044
+    second: Thumbnail Classic_22
+  - first:
+      213: 21300046
+    second: Thumbnail Classic_23
+  - first:
+      213: 21300048
+    second: Thumbnail Classic_24
+  - first:
+      213: 21300050
+    second: Thumbnail Classic_25
+  - first:
+      213: 21300052
+    second: Thumbnail Classic_26
+  - first:
+      213: 21300054
+    second: Thumbnail Classic_27
+  - first:
+      213: 21300056
+    second: Thumbnail Classic_28
+  - first:
+      213: 21300058
+    second: Thumbnail Classic_29
+  - first:
+      213: 21300060
+    second: Thumbnail Classic_30
+  - first:
+      213: 21300062
+    second: Thumbnail Classic_31
+  - first:
+      213: 21300064
+    second: Thumbnail Classic_32
+  - first:
+      213: 21300066
+    second: Thumbnail Classic_33
+  - first:
+      213: 21300068
+    second: Thumbnail Classic_34
+  - first:
+      213: 21300070
+    second: Thumbnail Classic_35
+  - first:
+      213: 21300072
+    second: Thumbnail Classic_36
+  - first:
+      213: 21300074
+    second: Thumbnail Classic_37
+  - first:
+      213: 21300076
+    second: Thumbnail Classic_38
+  - first:
+      213: 21300078
+    second: Thumbnail Classic_39
+  - first:
+      213: 21300080
+    second: Thumbnail Classic_80
+  - first:
+      213: 21300082
+    second: Thumbnail Classic_81
+  - first:
+      213: 21300084
+    second: Thumbnail Classic_82
+  - first:
+      213: 21300086
+    second: Thumbnail Classic_83
+  - first:
+      213: 21300088
+    second: Thumbnail Classic_84
+  - first:
+      213: 21300090
+    second: Thumbnail Classic_40
+  - first:
+      213: 21300092
+    second: Thumbnail Classic_41
+  - first:
+      213: 21300094
+    second: Thumbnail Classic_42
+  - first:
+      213: 21300096
+    second: Thumbnail Classic_43
+  - first:
+      213: 21300098
+    second: Thumbnail Classic_44
+  - first:
+      213: 21300100
+    second: Thumbnail Classic_45
+  - first:
+      213: 21300102
+    second: Thumbnail Classic_46
+  - first:
+      213: 21300104
+    second: Thumbnail Classic_47
+  - first:
+      213: 21300106
+    second: Thumbnail Classic_48
+  - first:
+      213: 21300108
+    second: Thumbnail Classic_49
+  - first:
+      213: 21300110
+    second: Thumbnail Classic_50
+  - first:
+      213: 21300112
+    second: Thumbnail Classic_51
+  - first:
+      213: 21300114
+    second: Thumbnail Classic_52
+  - first:
+      213: 21300116
+    second: Thumbnail Classic_53
+  - first:
+      213: 21300118
+    second: Thumbnail Classic_54
+  - first:
+      213: 21300120
+    second: Thumbnail Classic_55
+  - first:
+      213: 21300122
+    second: Thumbnail Classic_56
+  - first:
+      213: 21300124
+    second: Thumbnail Classic_57
+  - first:
+      213: 21300126
+    second: Thumbnail Classic_58
+  - first:
+      213: 21300128
+    second: Thumbnail Classic_59
+  - first:
+      213: 21300130
+    second: Thumbnail Classic_60
+  - first:
+      213: 21300132
+    second: Thumbnail Classic_61
+  - first:
+      213: 21300134
+    second: Thumbnail Classic_62
+  - first:
+      213: 21300136
+    second: Thumbnail Classic_63
+  - first:
+      213: 21300138
+    second: Thumbnail Classic_64
+  - first:
+      213: 21300140
+    second: Thumbnail Classic_65
+  - first:
+      213: 21300142
+    second: Thumbnail Classic_66
+  - first:
+      213: 21300144
+    second: Thumbnail Classic_67
+  - first:
+      213: 21300146
+    second: Thumbnail Classic_68
+  - first:
+      213: 21300148
+    second: Thumbnail Classic_69
+  - first:
+      213: 21300150
+    second: Thumbnail Classic_70
+  - first:
+      213: 21300152
+    second: Thumbnail Classic_71
+  - first:
+      213: 21300154
+    second: Thumbnail Classic_72
+  - first:
+      213: 21300156
+    second: Thumbnail Classic_73
+  - first:
+      213: 21300158
+    second: Thumbnail Classic_74
+  - first:
+      213: 21300160
+    second: Thumbnail Classic_75
+  - first:
+      213: 21300162
+    second: Thumbnail Classic_76
+  - first:
+      213: 21300164
+    second: Thumbnail Classic_77
+  - first:
+      213: 21300166
+    second: Thumbnail Classic_78
+  - first:
+      213: 21300168
+    second: Thumbnail Classic_79
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 10
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Thumbnail Classic_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35efdd93209d6764f86ca13557e4ea34
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_1
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 157
+        width: 7
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.5, y: -5}
+        - {x: -3.5, y: -14}
+        - {x: 3.5, y: -14}
+        - {x: 3.5, y: -5}
+      - - {x: -3.5, y: 14}
+        - {x: -3.5, y: 5}
+        - {x: 3.5, y: 5}
+        - {x: 3.5, y: 14}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81b2276d4b5c20b4a935fba4e3f8a183
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_2
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 154
+        width: 7
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2055a19169a2d2d47a64bd198947fda8
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_3
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: -9}
+        - {x: -8.5, y: -18}
+        - {x: 8.5, y: -18}
+        - {x: 8.5, y: -9}
+      - - {x: -8.5, y: 18}
+        - {x: -8.5, y: 9}
+        - {x: 8.5, y: 9}
+        - {x: 8.5, y: 18}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb45f662b0a5d5146a321db7274f24eb
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_4
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47a4ad6cd9ac19b48b12dd596664f7a7
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_5
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 750e7d6da9724f240a5e24948e238b95
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_6
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59b19589aacc72345883fd42af94d77e
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_7
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c24bf40d40d4794b938c251caff0636
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_8
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53a75bbe893533848a72ba6c079dda97
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_9
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01c0d0b7b8898aa4a932c0411890c635
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 128
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd0a8d067e092b946a79902629e91b8c
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_11
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 120
+        width: 9
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4.5, y: -5}
+        - {x: -4.5, y: -14}
+        - {x: 4.5, y: -14}
+        - {x: 4.5, y: -5}
+      - - {x: -4.5, y: 14}
+        - {x: -4.5, y: 5}
+        - {x: 4.5, y: 5}
+        - {x: 4.5, y: 14}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0554c78d55a5a894d9229c9ed0fba93d
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_12
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 117
+        width: 9
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb596affbf5bed3488f86b5d3a8100c8
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_13
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: -10}
+        - {x: -8.5, y: -18}
+        - {x: 8.5, y: -18}
+        - {x: 8.5, y: -10}
+      - - {x: 8.5, y: 18}
+        - {x: -8.5, y: 18}
+        - {x: -8.5, y: 10}
+        - {x: 8.5, y: 10}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af382ca8b43b0934eab94277918d1195
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_14
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cddc06f1395398043892f1787f24dd33
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_15
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8058986ca3e3ca46a8406f8ad957bf6
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_16
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 478b1157ba0e38242a7d6698da81f834
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_17
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 229edf6c761baa245aad4457602c9df8
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_18
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72de0aa178ae1f543ab16f0244094680
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_19
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6d75d1ca97fe224a8d76a61c29ccd16
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 91
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c188aa797121b8b4397f1ea2d4a76711
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_21
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 84
+        width: 7
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.5, y: -5}
+        - {x: -3.5, y: -13}
+        - {x: 3.5, y: -13}
+        - {x: 3.5, y: -5}
+      - - {x: -3.5, y: 13}
+        - {x: -3.5, y: 5}
+        - {x: 3.5, y: 5}
+        - {x: 3.5, y: 13}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5df04c85c19d15d4ca24e217548ff2b8
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_22
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 81
+        width: 7
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c1f29225e67a004aa6f34135b4776d3
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_23
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: -10}
+        - {x: -8.5, y: -18}
+        - {x: 8.5, y: -18}
+        - {x: 8.5, y: -10}
+      - - {x: -8.5, y: 18}
+        - {x: -8.5, y: 10}
+        - {x: 8.5, y: 10}
+        - {x: 8.5, y: 18}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddb21ad4eb3684d49a99cc6bdcbb6536
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_24
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a644bea0f769ed445bb4aa8792f518d8
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_25
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49637f4dcc7cf7e47affb15094e7bf05
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_26
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cba59353af0efbf49999c9be50ae0bcd
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_27
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5b487f8a77a4954da333d4cabdafcbe
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_28
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d65348122d150df4c952dffbe07354a1
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_29
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91b01ef887d72bf4d8622c4b8ba71ebb
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 54
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 300b4d000dadf034fa29d7d187aec8c9
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_31
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 46
+        width: 7
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.5, y: -5.5}
+        - {x: -3.5, y: -13.5}
+        - {x: 3.5, y: -13.5}
+        - {x: 3.5, y: -5.5}
+      - - {x: -3.5, y: 13.5}
+        - {x: -3.5, y: 5.5}
+        - {x: 3.5, y: 5.5}
+        - {x: 3.5, y: 13.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45c2bda79850c344a918e69a2389bcf7
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_32
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 43
+        width: 7
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92ed4ba3da124d04b83a76c8c2316057
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_33
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8.5, y: -10}
+        - {x: -8.5, y: -18}
+        - {x: 8.5, y: -18}
+        - {x: 8.5, y: -10}
+      - - {x: -8.5, y: 18}
+        - {x: -8.5, y: 9}
+        - {x: 8.5, y: 9}
+        - {x: 8.5, y: 18}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce3c6ea87172f9a48add5f78bfd64d64
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_34
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7a9a934f62c8d24a9700b7deba0ea49
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_35
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b5005e5aa27a034eaa8b5f70d824127
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_36
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcdb0a857cb88ff408279af72d23ba8a
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_37
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d85799e8c1c54aa4cb10f0178b8e4e2d
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_38
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1414670dc96d188428d934611a111d9f
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_39
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48904bb79c3bae749a1178f52919be94
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_80
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 1
+        width: 23
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9b7a98c5adb3b847b238ca43a5df563
+      internalID: 21300080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_81
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 1
+        width: 23
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22f35c57e208be745ab766d2d08fa1e8
+      internalID: 21300082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_82
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 1
+        width: 23
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 331d3edcd03e19e4b874f70fb4e130c7
+      internalID: 21300084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_83
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 20
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d811196020d8814782ea55674d5d8a5
+      internalID: 21300086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_84
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 1
+        width: 20
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27709ffb7e069614dba12023a71681cd
+      internalID: 21300088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_40
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 165
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a8c7504c8570da44a2728e3d9243934
+      internalID: 21300090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_41
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 157
+        width: 7
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61ba4883f2c94c24282fc9d6b1b73179
+      internalID: 21300092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_42
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 154
+        width: 7
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55c5337c6db9d8d4495d320faa997bef
+      internalID: 21300094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_43
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecd612361b12230429ff65846833bf1e
+      internalID: 21300096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_44
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e0c2d58e52e8934987ffe7e290f57eb
+      internalID: 21300098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_45
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63f29275daaed334683c926fbd2fd4c1
+      internalID: 21300100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_46
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fdbfaa811904cf40a4f3d8569885708
+      internalID: 21300102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_47
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75c592f04c0bf1d4fbae3511652af942
+      internalID: 21300104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_48
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6791241f8c637da4f98503a4b00b0dda
+      internalID: 21300106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_49
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 153
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4fe2e1bffcb45d4b8074e1ed661ce77
+      internalID: 21300108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_50
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 128
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c5dcdf7080174f41b2f5d2949a8fe33
+      internalID: 21300110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_51
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 120
+        width: 9
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff9a47716d36a4a42b0fb330309f33bc
+      internalID: 21300112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_52
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 117
+        width: 9
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43b1eb1a8fa4be24ab95d579b78282ee
+      internalID: 21300114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_53
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 417dbb84e467a884e98277e69a32f27c
+      internalID: 21300116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_54
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68857e75c2a4cf44b899484966ab68eb
+      internalID: 21300118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_55
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ff9b330aee8e7344ae59b84c3a24118
+      internalID: 21300120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_56
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02d655b7e1e938c4ca14c7599ac975da
+      internalID: 21300122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_57
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1489221785e5fdb48bd5750dedbb729e
+      internalID: 21300124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_58
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b6e68cb0e1760c4c8c9f64ff6b56e8e
+      internalID: 21300126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_59
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 116
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e761738b964408d4eacbe99582a381ce
+      internalID: 21300128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_60
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 91
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d11d8c762df37348b8b5b4907850102
+      internalID: 21300130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_61
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 84
+        width: 7
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 581225985f2e3dd41acea8ce6f4c21f5
+      internalID: 21300132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_62
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 81
+        width: 7
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b03a0438a5fccc44aa4a374fe6eaa511
+      internalID: 21300134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_63
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fad5524a9d013340b85dc9a54bca7f7
+      internalID: 21300136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_64
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeca0b16fe7e03c4c9e225e07536821c
+      internalID: 21300138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_65
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41c166533e10d434da167ebca99c5022
+      internalID: 21300140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_66
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3eed1ae9d3adf534b94c7758ba948d31
+      internalID: 21300142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_67
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 843156584cb7ab54d9850077f8324023
+      internalID: 21300144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_68
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaadc565b5d8f8745ad73afe5d56c108
+      internalID: 21300146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_69
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 79
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58457bcf7c1f91640a9573af1794edb6
+      internalID: 21300148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_70
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 54
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 573df729f4504b241af1cbeaf7b484a9
+      internalID: 21300150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_71
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 46
+        width: 7
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7d7efb4bc48c0845910ebbb3d23cdf4
+      internalID: 21300152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_72
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 43
+        width: 7
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55482f87772fbb944852a85d283fed5a
+      internalID: 21300154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_73
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a68effc7c19ee641a38f5735e43c19d
+      internalID: 21300156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_74
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8423f15d53d4be4b8441db59a10ee1a
+      internalID: 21300158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_75
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0d607f903a5c414ca1ecf1af12be3f9
+      internalID: 21300160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_76
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00bf569673725934eb7cd2ffecaf8e00
+      internalID: 21300162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_77
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 465a4e18b26427047b56c8c36914e3ec
+      internalID: 21300164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_78
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33d51c9646a523547b754dfbecbd373a
+      internalID: 21300166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Thumbnail Classic_79
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 42
+        width: 17
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25edd2afeb5c0d949a5e994f9ed3e493
+      internalID: 21300168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: f262ae80d02801c4ca2f697866000165
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Thumbnail Classic_0: 21300000
+      Thumbnail Classic_1: 21300002
+      Thumbnail Classic_10: 21300020
+      Thumbnail Classic_11: 21300022
+      Thumbnail Classic_12: 21300024
+      Thumbnail Classic_13: 21300026
+      Thumbnail Classic_14: 21300028
+      Thumbnail Classic_15: 21300030
+      Thumbnail Classic_16: 21300032
+      Thumbnail Classic_17: 21300034
+      Thumbnail Classic_18: 21300036
+      Thumbnail Classic_19: 21300038
+      Thumbnail Classic_2: 21300004
+      Thumbnail Classic_20: 21300040
+      Thumbnail Classic_21: 21300042
+      Thumbnail Classic_22: 21300044
+      Thumbnail Classic_23: 21300046
+      Thumbnail Classic_24: 21300048
+      Thumbnail Classic_25: 21300050
+      Thumbnail Classic_26: 21300052
+      Thumbnail Classic_27: 21300054
+      Thumbnail Classic_28: 21300056
+      Thumbnail Classic_29: 21300058
+      Thumbnail Classic_3: 21300006
+      Thumbnail Classic_30: 21300060
+      Thumbnail Classic_31: 21300062
+      Thumbnail Classic_32: 21300064
+      Thumbnail Classic_33: 21300066
+      Thumbnail Classic_34: 21300068
+      Thumbnail Classic_35: 21300070
+      Thumbnail Classic_36: 21300072
+      Thumbnail Classic_37: 21300074
+      Thumbnail Classic_38: 21300076
+      Thumbnail Classic_39: 21300078
+      Thumbnail Classic_4: 21300008
+      Thumbnail Classic_40: 21300090
+      Thumbnail Classic_41: 21300092
+      Thumbnail Classic_42: 21300094
+      Thumbnail Classic_43: 21300096
+      Thumbnail Classic_44: 21300098
+      Thumbnail Classic_45: 21300100
+      Thumbnail Classic_46: 21300102
+      Thumbnail Classic_47: 21300104
+      Thumbnail Classic_48: 21300106
+      Thumbnail Classic_49: 21300108
+      Thumbnail Classic_5: 21300010
+      Thumbnail Classic_50: 21300110
+      Thumbnail Classic_51: 21300112
+      Thumbnail Classic_52: 21300114
+      Thumbnail Classic_53: 21300116
+      Thumbnail Classic_54: 21300118
+      Thumbnail Classic_55: 21300120
+      Thumbnail Classic_56: 21300122
+      Thumbnail Classic_57: 21300124
+      Thumbnail Classic_58: 21300126
+      Thumbnail Classic_59: 21300128
+      Thumbnail Classic_6: 21300012
+      Thumbnail Classic_60: 21300130
+      Thumbnail Classic_61: 21300132
+      Thumbnail Classic_62: 21300134
+      Thumbnail Classic_63: 21300136
+      Thumbnail Classic_64: 21300138
+      Thumbnail Classic_65: 21300140
+      Thumbnail Classic_66: 21300142
+      Thumbnail Classic_67: 21300144
+      Thumbnail Classic_68: 21300146
+      Thumbnail Classic_69: 21300148
+      Thumbnail Classic_7: 21300014
+      Thumbnail Classic_70: 21300150
+      Thumbnail Classic_71: 21300152
+      Thumbnail Classic_72: 21300154
+      Thumbnail Classic_73: 21300156
+      Thumbnail Classic_74: 21300158
+      Thumbnail Classic_75: 21300160
+      Thumbnail Classic_76: 21300162
+      Thumbnail Classic_77: 21300164
+      Thumbnail Classic_78: 21300166
+      Thumbnail Classic_79: 21300168
+      Thumbnail Classic_8: 21300016
+      Thumbnail Classic_80: 21300080
+      Thumbnail Classic_81: 21300082
+      Thumbnail Classic_82: 21300084
+      Thumbnail Classic_83: 21300086
+      Thumbnail Classic_84: 21300088
+      Thumbnail Classic_9: 21300018
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

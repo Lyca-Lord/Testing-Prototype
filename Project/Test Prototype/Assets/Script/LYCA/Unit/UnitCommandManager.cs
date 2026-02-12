@@ -52,13 +52,13 @@ namespace Unit
         {
             if (actionSequence.Count <= 0)
             {
-                isUnitActing = true;
+                isUnitActing = false;
                 ActionSequenceEnd?.Invoke();
                 Debug.Log("行动序列执行完毕");
             }
             else
             {
-                isUnitActing = false;
+                //isUnitActing = true;
                 CommandPop();
             }
         }
@@ -92,6 +92,7 @@ namespace Unit
 
         public void PushCommand_Front(UnitCommand _command)
         {
+            Debug.Log(_command.ToString());
             actionSequence.AddFirst(_command);
         }
     } // 在行动序列首位添加指令
