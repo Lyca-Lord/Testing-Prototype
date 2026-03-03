@@ -1,5 +1,6 @@
 using Map;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Unit
@@ -7,7 +8,7 @@ namespace Unit
     public partial class Units : MonoBehaviour
     {
         [Header("Situation")]
-        public bool isPlayerUnit = true;
+        public bool isPlayer = true;
         public UnitElement unitElement;
         public Vector2 location;
         public MapCell cell;
@@ -243,6 +244,7 @@ namespace Unit
     public class MoveState : UnitState
     {
         private MapCell mapCellToward;
+        private List<Vector2> locations;
 
         public MoveState(float duration, Units unit, StateMachine stateMachine) : base("Move", duration, unit, stateMachine)
         {
@@ -252,6 +254,9 @@ namespace Unit
         {
             base.Enter(_position);
             mapCellToward = MapManager.Instance.FindCellByLocation(_position);
+            // 获取路径列表
+            locations = new List<Vector2>(mapCellToward.movePath);
+            MapManager.Instance.ClaerAllCellPath();
             unit.cell.CellRelease();
         }
 
@@ -259,21 +264,38 @@ namespace Unit
         {
             mapCellToward.CellRegister(unit);
             Central.Instance.MoveEnd?.Invoke(unit.currentCommand);
+            MapManager.Instance.ClaerAllCellPath();
+
             unit.ActionEnd(); // 延迟一帧唤起行动结束事件，方便做行动插入
             base.Exit();
         }
 
         public override void Update()
         {
-            unit.transform.position = Vector2.MoveTowards(
-                unit.transform.position,
-                mapCellToward.Position,
-                5 * Time.deltaTime
-                );
             base.Update();
-            if (Vector2.Distance(unit.transform.position, mapCellToward.Position) < 0.01f)
+
+            // 如果路径中还有未到达的点
+            if (locations.Count > 0)
             {
-                unit.transform.position = mapCellToward.Position;
+                Vector2 targetLocation = locations[0];
+                MapCell targetCell = MapManager.Instance.FindCellByLocation(targetLocation);
+
+                unit.transform.position = Vector2.MoveTowards(
+                    unit.transform.position,
+                    targetCell.Position,
+                    5 * Time.deltaTime
+                );
+
+                // 判断是否到达当前路径节点
+                if (Vector2.Distance(unit.transform.position, targetCell.Position) < 0.01f)
+                {
+                    unit.transform.position = targetCell.Position;
+                    locations.RemoveAt(0); // 到达后移除该节点，以便向下一个节点移动
+                }
+            }
+            else
+            {
+                // 所有路径点均已到达，切换回Idle状态
                 stateMachine.ChangeState(unit.idleState, Vector2.zero);
             }
         }
@@ -284,16 +306,22 @@ namespace Unit
         public MeleeState(float duration, Units unit, StateMachine stateMachine) : base("Melee", duration, unit, stateMachine)
         {
         }
+
         public override void Enter(Vector2 _position)
         {
             base.Enter(_position);
         }
+
         public override void Exit()
         {
+            Units _unit = MapManager.Instance.FindCellByLocation(unit.currentCommand.position).unit;
+            _unit.unitElement.GetHit(unit.unitElement.attack);
+
             Central.Instance.MeleeEnd?.Invoke(unit.currentCommand);
             unit.ActionEnd(); // 延迟一帧唤起行动结束事件，方便做行动插入
             base.Exit();
         }
+
         public override void Update()
         {
             base.Update();
@@ -314,6 +342,9 @@ namespace Unit
 
         public override void Exit()
         {
+            Units _unit = MapManager.Instance.FindCellByLocation(unit.currentCommand.position).unit;
+            _unit.unitElement.GetHit(unit.unitElement.attack);
+
             Central.Instance.RangeEnd?.Invoke(unit.currentCommand);
             unit.ActionEnd(); // 延迟一帧唤起行动结束事件，方便做行动插入
             base.Exit();
@@ -322,6 +353,7 @@ namespace Unit
         public override void Update()
         {
             base.Update();
+            stateMachine.ChangeState(unit.idleState, Vector2.zero);
         }
     } // 远程状态
 
@@ -336,10 +368,10 @@ namespace Unit
             base.Enter(_position);
             Central.Instance.ClickEvent.AddListener(GetClick);
             Central.Instance.CancelEvent.AddListener(Cancel);
-            MapManager.Instance.EnableCellByRange(
-                unit.location,
+            MapManager.Instance.HighLightMovePath(
+                unit.cell.location,
                 unit.unitElement.currentSpeed,
-                "Manhattan"
+                unit.isPlayer
                 );
         }
 
@@ -369,7 +401,11 @@ namespace Unit
                     );
                 stateMachine.ChangeState(unit.idleState, Vector2.zero);
             }
-            if (isCancel) stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            if (isCancel)
+            {
+                MapManager.Instance.ClaerAllCellPath();
+                stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            }
         }
 
         private bool ExitCondition()
@@ -467,7 +503,7 @@ namespace Unit
         {
             Central.Instance.ClickEvent.RemoveListener(GetClick);
             Central.Instance.CancelEvent.RemoveListener(Cancel);
-            
+
             unit.ActionEnd(); // 延迟唤起行动结束事件，方便做行动插入
             //Central.Instance.ActionStart?.Invoke();
             MapManager.Instance.DisableAllCell();

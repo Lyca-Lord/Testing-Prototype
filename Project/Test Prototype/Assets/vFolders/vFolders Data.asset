@@ -24,6 +24,8 @@ MonoBehaviour:
     - 61759cceb1e01b74098b74980c499412
     - e3e9882ec8eb75b44a6ee03905c84e1c
     - 39cd4c420575b0e4291737a85debe03a
+    - 764eddfbd2fc0f84bb88fad41e7c7be6
+    - 9e5929b3d6692ff4fa0c3d21bd19147f
     values:
     - iconNameOrGuid: cs Script Icon
       colorIndex: 0
@@ -63,6 +65,14 @@ MonoBehaviour:
       isColorRecursive: 0
     - iconNameOrGuid: 
       colorIndex: 3
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: Shader Icon
+      colorIndex: 0
+      isIconRecursive: 0
+      isColorRecursive: 0
+    - iconNameOrGuid: 
+      colorIndex: 4
       isIconRecursive: 0
       isColorRecursive: 0
   bookmarks: []

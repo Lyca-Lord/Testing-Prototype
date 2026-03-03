@@ -1,5 +1,6 @@
 using CommandCard;
 using UnityEngine;
+using UnityEngine.Events;
 
 public partial class CardManager : MonoBehaviour, IInitialiazer
 {
@@ -27,49 +28,61 @@ public partial class CardManager : MonoBehaviour, IInitialiazer
     {
         playerColumn.SetUp(playerDeck);
         if (enemyColumn != null) enemyColumn.SetUp(enemyDeck);
-
-        UnlockPlayerColumn();
+        //UnlockPlayerColumn();
     }
 } // 引用部分
 
 public partial class CardManager
 {
-    [Header("Buttons")]
-    public GameObject playCardButton;
-    public GameObject endCommandButton;
-    public GameObject rebuildButton;
-} // UI引用
-
-public partial class CardManager
-{
     [Header("Circumstance")]
     public bool isPlayerTurn = true;
-    public int cardHasPlayed = 0;
+    public UnityEvent<bool> LockButtonsEvent = new();
+    public UnityEvent UnlockButtonsEvent = new();
 
     public void LockPlayerColumn(bool isTurnOver = false)
     {
-        playerColumn.SetLockTrue();
-        rebuildButton.SetActive(false);
-        playCardButton.SetActive(false);
-        if (isTurnOver) endCommandButton.SetActive(false);
-        else endCommandButton.SetActive(true);
+        if (Central.isPlayerTurn)
+            playerColumn.SetLockTrue();
+        else enemyColumn.SetLockTrue();
+        LockButtonsEvent.Invoke(isTurnOver);
     }
 
     public void UnlockPlayerColumn()
     {
-        playerColumn.SetLockFalse();
-        rebuildButton.SetActive(true);
-        playCardButton.SetActive(true);
-        endCommandButton.SetActive(false);
-    }
-
-    public void LockColumn()
-    {
-        if (isPlayerTurn) LockPlayerColumn();
-    }
-
-    public void UnLockColumn()
-    {
-        if (isPlayerTurn) UnlockPlayerColumn();
+        if (Central.isPlayerTurn)
+            playerColumn.SetLockFalse();
+        else enemyColumn.SetLockFalse();
+        UnlockButtonsEvent.Invoke();
     }
 } // 行动部分
+
+public partial class CardManager
+{
+    public void PlaySelectedCard()
+    {
+        if (Central.isPlayerTurn)
+            playerColumn.PlaySelectedCard();
+        else enemyColumn.PlaySelectedCard();
+    }
+
+    public void NextTurn()
+    {
+        if (Central.isPlayerTurn)
+            playerColumn.NextTurn();
+        else enemyColumn.NextTurn();
+    }
+
+    public void EndCommand()
+    {
+        if (Central.isPlayerTurn)
+            playerColumn.EndCommand();
+        else enemyColumn.EndCommand();
+    }
+
+    public void RebuildDeck()
+    {
+        if (Central.isPlayerTurn)
+            playerColumn.ReconstructDeck();
+        else enemyColumn.ReconstructDeck();
+    }
+} // 卡牌效果部分

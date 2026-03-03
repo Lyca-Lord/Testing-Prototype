@@ -184,7 +184,7 @@ namespace CommandCard
         {
             MapManager.Instance.EnableUnitPick(unit =>
             {
-                return unit.unitElement.CheckTraits("Trait_CanMelee");
+                return unit.unitElement.CheckTraits("Trait_CanMelee") && unit.unitElement.currentAttackTime > 0;
             });
             //Central.Instance.UnitSelectEvent.RemoveListener(MeleeSelectUnit); // 取消监听，防呆
             Central.Instance.UnitSelectEvent.AddListener(MeleeSelectUnit); // 重新监听单位被选中事件
@@ -261,7 +261,7 @@ namespace CommandCard
         {
             MapManager.Instance.EnableUnitPick(unit =>
             {
-                return unit.unitElement.CheckTraits("Trait_CanRanged");
+                return unit.unitElement.CheckTraits("Trait_CanRanged") && unit.unitElement.currentAttackTime > 0;
             });
             Central.Instance.UnitSelectEvent.AddListener(RangedSelectUnit); // 重新监听单位被选中事件
             RangedCheckEnd(); // 检查是否还有单位可以远程

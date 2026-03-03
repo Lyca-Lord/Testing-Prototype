@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 124, y: 176}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3622277489776244024
 CanvasRenderer:
@@ -59,14 +59,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.27672952, g: 0.27672952, b: 0.27672952, a: 0.78431374}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300056, guid: aa4dd304551d16f4bbc6faefb60bf4ed, type: 3}
+  m_Sprite: {fileID: 21300062, guid: fe7cb5ea2b77ad14bbfdc44f78bae835, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -113,7 +113,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 5}
-  m_SizeDelta: {x: 150, y: 220}
+  m_SizeDelta: {x: 124, y: 176}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1177113610214376997
 CanvasRenderer:
@@ -167,11 +167,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardInfo: {fileID: 0}
   offsetY: 40
+  column: {fileID: 0}
   parent: {fileID: 4709775752985737863}
   image: {fileID: 1814140964300795206}
   SelectEvent:
     m_PersistentCalls:
       m_Calls: []
+  isSelected: 0
 --- !u!1 &5466750848325912792
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +209,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 220}
+  m_SizeDelta: {x: 124, y: 176}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5277376536289578696
 CanvasRenderer:

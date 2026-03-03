@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unit;
 using UnityEngine;
 
@@ -8,10 +9,12 @@ namespace Map
     {
         [Header("Index")]
         public int index;
+        public int type = 0; // 0为普通格子，1为障碍格子，2为水格子，可根据需要扩展
         public Vector2 location; // 地图格子在二维数组中的位置
 
         [Header("Contain")]
         public Units unit; // 当前格子包含的单位，若无则为null
+        public List<Vector2> movePath;
 
         public Vector2 Position => transform.position;
 
@@ -28,6 +31,12 @@ namespace Map
             unit.location = location;
             unit.cell = this;
         }// 当单位进入格子时调用
+
+        public bool IsWalkable(bool _isPlayer)
+        {
+            if (unit != null) return unit.isPlayer == _isPlayer;
+            return type != 1; // 假设type为1的格子不可行走，其他类型的格子可行走
+        }
     } // 地图单元储存信息
 
     public partial class MapCell
@@ -36,6 +45,7 @@ namespace Map
         public SpriteRenderer sr;
         public SpriteRenderer highlight;
         public SpriteRenderer indicator;
+        public SpriteRenderer pathIndicator;
         public BoxCollider2D cd;
         public Transform unitParent;
 
@@ -78,8 +88,8 @@ namespace Map
             indicator.gameObject.SetActive(false);
             highlight.gameObject.SetActive(false);
 
-            sr.sortingOrder = indicator.sortingOrder = highlight.sortingOrder
-                = _index;
+            sr.sortingOrder = indicator.sortingOrder = highlight.sortingOrder =
+                pathIndicator.sortingOrder = _index;
         }
 
         public void DestoryCell()
@@ -97,12 +107,15 @@ namespace Map
         {
             isMouseEnter = true;
             indicator.gameObject.SetActive(true);
+            if (movePath.Count > 0) ShowAllPathIndicator();
         }
 
         public void OnMouseExit()
         {
             isMouseEnter = false;
             indicator.gameObject.SetActive(false);
+
+            if (movePath.Count > 0) CloseAllPathIndicator();
             ClickUp();
         }
 
@@ -120,8 +133,27 @@ namespace Map
             {
                 Central.Instance.ClickEvent?.Invoke(location);
                 if (unit != null) Central.Instance.UnitSelectEvent?.Invoke(unit); // 思考，这个真的要区分吗
+                if (movePath.Count > 0) CloseAllPathIndicator();
             } // 核心要素，鼠标点击检测
         } // 鼠标检测
+
+        private void ShowAllPathIndicator()
+        {
+            foreach(var i in movePath)
+            {
+                MapCell _cell = MapManager.Instance.FindCellByLocation(i);
+                _cell.pathIndicator.gameObject.SetActive(true);
+            }
+        }
+
+        private void CloseAllPathIndicator()
+        {
+            foreach (var i in movePath)
+            {
+                MapCell _cell = MapManager.Instance.FindCellByLocation(i);
+                _cell.pathIndicator.gameObject.SetActive(false);
+            }
+        }
     }
 
     public partial class MapCell

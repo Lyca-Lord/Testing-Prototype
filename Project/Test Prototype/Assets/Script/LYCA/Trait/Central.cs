@@ -7,7 +7,11 @@ using UnityEngine.Events;
 public class Central : MonoBehaviour
 {
     public static Central Instance { get; private set; }
-    public bool isPlayerTurn = true;
+    public static bool isPlayerTurn = true;
+
+    [Header("Next Turn Event")]
+    public UnityEvent NextTurnStart; // 在CardColumn中调用，AI直接调用，玩家需要点击按钮
+    public UnityEvent TurnBeginEvent; // 也是在CardColumn中调用
 
     [Header("For Action Sequence")]
     public UnityEvent ActionStart; // 在UnitCommandManager中调用
@@ -56,6 +60,13 @@ public class Central : MonoBehaviour
             .OfType<IInitialiazer>()
             .ToList();
         foreach (var i in ini) i.Initialize();
+
+        isPlayerTurn = true; // 初始化玩家回合状态
+        NextTurnStart.AddListener(() =>
+        {
+            isPlayerTurn = !isPlayerTurn;
+            Debug.Log($"Turn changed. Is player turn: {isPlayerTurn}");
+        });
     }
 
     private void Update()
@@ -65,6 +76,9 @@ public class Central : MonoBehaviour
 
     private void InitUnityEvents()
     {
+        NextTurnStart ??= new UnityEvent();
+        TurnBeginEvent ??= new UnityEvent();
+
         ActionStart ??= new UnityEvent();
         ActionEnd ??= new UnityEvent();
         ActionEndEarly ??= new UnityEvent();
@@ -91,6 +105,9 @@ public class Central : MonoBehaviour
 
     public void ClearAllUnityEvents()
     {
+        NextTurnStart?.RemoveAllListeners();
+        TurnBeginEvent?.RemoveAllListeners();
+
         ActionStart?.RemoveAllListeners();
         ActionEnd?.RemoveAllListeners();
 

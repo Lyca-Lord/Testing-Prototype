@@ -1,14 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unit;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CommandCard
 {
     public partial class CardColumn : MonoBehaviour
     {
         [Header("List")]
-        public List<CardInfo> cardDeck = new();
+        public List<CardInfo> cardDeck = new(); // 可以随意插入新牌，原本牌组信息储存在SO里
         public List<CardInfo> currentCardDeck = new();
         public List<CardController> handCard = new();
         public List<CardInfo> discardPile = new();
@@ -18,9 +20,14 @@ namespace CommandCard
         public CardController selectedCard;
         public int maxHandCount = 5;
         public Vector2 originPos;
+        public bool isPlayer = true; // 是否为玩家牌列
 
         [Header("Component")]
         public Transform cardParent;
+
+        [Header("Unity Event")]
+        public UnityEvent DeckDrawEvent;
+        public UnityEvent DeckRebuildEvent;
 
         public void SetUp(CardDeckInfo _deck)
         {
@@ -30,24 +37,73 @@ namespace CommandCard
             ShuffleDeck();
             DrawCardToMax();
             originPos = transform.localPosition;
+
+            TurnBegin();
+            Central.Instance.TurnBeginEvent.AddListener(TurnBegin);
+        } // 初始化牌列，设置牌组信息，清空手牌，洗牌并抽取至最大手牌数
+
+        public void TurnBegin()
+        {
+            if (Central.isPlayerTurn != isPlayer)
+            {
+                IsLock = true; // 如果不是玩家回合，则锁定牌列，避免进行其他操作(象征性写一下)
+                GetDown(); // 如果不是玩家回合，则将牌列位置下移
+            }
+            else
+            {
+                IsLock = false; // 如果是玩家回合，则解锁牌列，允许进行操作
+                ResetLocalPosition(); // 如果是玩家回合，则重置牌列位置
+            }
         }
 
         public void PlaySelectedCard()
         {
             selectedCard.CardEffect();
             Discard(selectedCard);
-        }
+        } // 玩家选中卡牌后，执行卡牌效果并将其弃置
 
         public void EndCommand()
         {
             if (UnitCommandManager.isUnitActing) return;
             Central.Instance.ActionEndEarly?.Invoke();
+        } // 结束指令，若单位正在行动则不执行
+
+        public void NextTurn()
+        {
+            if (UnitCommandManager.isUnitActing) return;
+            Central.Instance.NextTurnStart?.Invoke();
+            StartCoroutine(Enumerator());
+
+            IEnumerator Enumerator()
+            {
+                IsLock = true; // 锁定牌列，避免在下一回合开始时进行其他操作
+                bool isActing = false;
+                //yield return new WaitForSeconds(0.5f); // 等待一段时间以显示当前回合结束
+                NextTurnAction(() => isActing = true, () => isActing = false);
+                yield return new WaitUntil(() => !isActing); // 等待直到当前回合结束
+                Central.Instance.TurnBeginEvent?.Invoke();
+            }
+        } // 进入下一回合，若单位正在行动则不执行
+
+        private void NextTurnAction(Action _Begin, Action _End)
+        {
+            StartCoroutine(Enumerator());
+            IEnumerator Enumerator()
+            {
+                _Begin?.Invoke();
+                ShuffleHandBackIntoDeck();
+                DrawCardToMax();
+                yield return new WaitUntil(() => !IsLock);
+                IsLock = true; // 锁定牌列，避免在下一回合开始时进行其他操作
+                _End?.Invoke();
+            }
         }
 
         private void GetDown()
         {
-            transform.localPosition = originPos + Vector2.down * 50;
-        }
+            transform.localPosition =
+                originPos + Vector2.down * (transform.rotation.z == 0 ? 50 : -50);
+        } // 将牌列位置下移，表示处于锁定状态（如敌方回合时）
 
         private void ResetLocalPosition() => transform.localPosition = originPos;
     }
@@ -59,7 +115,7 @@ namespace CommandCard
             if (currentCardDeck.Count <= 1) return;
             for (int i = 0; i < currentCardDeck.Count; i++)
             {
-                int randomIndex = Random.Range(i, currentCardDeck.Count);
+                int randomIndex = UnityEngine.Random.Range(i, currentCardDeck.Count);
                 (currentCardDeck[i], currentCardDeck[randomIndex]) =
                     (currentCardDeck[randomIndex], currentCardDeck[i]);
             }
@@ -89,7 +145,7 @@ namespace CommandCard
                 while (handCard.Count < maxHandCount && currentCardDeck.Count > 0)
                 {
                     DrawCard();
-                    yield return new WaitForSeconds(0.15f);
+                    yield return new WaitForSeconds(0.1f);
                 }
                 IsLock = false;
             }
@@ -105,6 +161,7 @@ namespace CommandCard
             CardController cardController = cardObj.transform.GetChild(0).GetComponent<CardController>();
             cardController.SetUp(cardInfo, SelectCard, this);
             handCard.Add(cardController);
+            DeckDrawEvent?.Invoke();
         }
 
         public void ReconstructDeck()
@@ -127,6 +184,7 @@ namespace CommandCard
                 discardPile.Clear();
                 ShuffleDeck();
                 DrawCardToMax();
+                DeckRebuildEvent?.Invoke();
                 IsLock = false;
             }
         }// 将手牌和弃牌堆的卡片重新放回牌堆并洗牌（先将手牌逐一弃牌）
@@ -146,6 +204,19 @@ namespace CommandCard
             {
                 if (selectedCard == _card) selectedCard = null;
             }
+        }
+
+        public void ShuffleHandBackIntoDeck()
+        {
+            if (handCard.Count == 0) return;
+            foreach (var card in handCard)
+            {
+                currentCardDeck.Add(card.cardInfo);
+                card.DestroyCard();
+            }
+            handCard.Clear();
+            ShuffleDeck();
+            DrawCardToMax();
         }
     } // 功能性函数
 

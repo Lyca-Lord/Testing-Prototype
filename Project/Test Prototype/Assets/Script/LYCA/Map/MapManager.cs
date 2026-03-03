@@ -92,7 +92,7 @@ namespace Map
             {
                 if (cell.location == _location) return cell;
             }
-            Debug.LogWarning("未找到对应位置的格子，返回null");
+            Debug.LogWarning("未找到对应位置的格子，返回null" + _location);
             return null;
         }
 
@@ -124,7 +124,7 @@ namespace Map
 
         public void DisableAllCell()
         {
-            foreach(var cell in cellList)
+            foreach (var cell in cellList)
             {
                 cell.DisableClick();
             }
@@ -150,4 +150,119 @@ namespace Map
             }
         } // 根据mode判断采用曼哈顿距离还是切比雪夫距离
     } // 其他功能部分
+
+    public partial class MapManager
+    {
+        public struct CellNode
+        {
+            public Vector2 location;
+            public Vector2 parent;
+            public int distance;
+            public List<Vector2> path;
+
+            public CellNode(Vector2 _location, int _distance, Vector2 _parent)
+            {
+                location = _location;
+                distance = _distance;
+                parent = _parent;
+                path = new();
+            }
+        }
+
+        public void ClaerAllCellPath()
+        {
+            foreach (var i in cellList) i.movePath.Clear();
+        } // 在移动之后再调用
+
+        /// <summary>
+        /// 用SPFA寻找从startPoint到endPoint的路径，只将路径粗存在endPoint的movePath中
+        /// step为移动步数限制，isPlayer表示是否为玩家单位（可能影响路径选择）
+        /// 注意cell的type为2的格子需要消耗2行动力
+        /// </summary>
+        /// <param name="startPoint"></param>
+        /// <param name="endPoint"></param>
+        /// <param name="step"></param>
+        /// <param name="isPlayer"></param>
+        public void FindMovePath(Vector2 startPoint, Vector2 endPoint, int step, bool isPlayer)
+        {
+            Queue<CellNode> queue = new();
+            //List<Vector2> locations = new();
+
+            int[] dx, dy;
+            int signx = startPoint.x < endPoint.x ? 1 : -1;
+            int signy = startPoint.y < endPoint.y ? 1 : -1;
+            if (Mathf.Abs(startPoint.x - endPoint.x) > Mathf.Abs(startPoint.y - endPoint.y))
+            {
+                (dx, dy) = (
+                    new int[4] { signx, 0, 0, -signx },
+                    new int[4] { 0, signy, -signy, 0 }
+                    );
+            }
+            else
+            {
+                (dx, dy) = (
+                    new int[4] { 0, signx, -signx, 0 },
+                    new int[4] { signy, 0, 0, -signy }
+                    );
+            }
+
+            CellNode _node = new(startPoint, 0, startPoint);
+            _node.path.Add(startPoint);
+            queue.Enqueue(_node);
+
+            while (queue.Count > 0)
+            {
+                CellNode node = queue.Dequeue();
+                if (node.location == endPoint)
+                {
+                    MapCell cell = FindCellByLocation(endPoint);
+                    cell.movePath = node.path;
+                    return;
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    Vector2 nextLocation = node.location + new Vector2(dx[i], dy[i]);
+                    if (nextLocation.x < 0 || nextLocation.y < 0 || nextLocation.x > mapHeight || nextLocation.y > mapWidth) continue;
+
+                    MapCell nextCell = FindCellByLocation(nextLocation);
+                    if (nextCell == null) continue; // 越界
+                    int cost = nextCell.type == 2 ? 2 : 1; // 不同地形的行动力消耗
+                    
+                    if (node.distance + cost > step) continue; // 超出步数限制
+                    if (nextCell.IsWalkable(isPlayer)) continue; // 有单位阻挡
+
+                    CellNode nextNode = new(nextLocation, node.distance + cost, node.location);
+                    nextNode.path.AddRange(node.path);
+                    nextNode.path.Add(nextLocation);
+                    queue.Enqueue(nextNode);
+                }
+            }
+        }
+
+        public void HighLightMovePath(Vector2 startPoint, int step, bool isPlayer)
+        {
+            foreach(var i in cellList)
+            {
+                if (Distance(i.location, startPoint, "Manhattan") > step) continue;
+                FindMovePath(startPoint, i.location, step, isPlayer); // 每次只找一个点的最短路径
+
+                if (i.movePath.Count > 0) i.EnableClick();
+            }
+        }
+
+        public void HideAllPath()
+        {
+            foreach(var i in cellList) i.pathIndicator.gameObject.SetActive(false);
+        }
+
+        public void ShowPath(List<Vector2> path)
+        {
+            foreach(var i in cellList) i.pathIndicator.gameObject.SetActive(false);
+            foreach(var location in path)
+            {
+                MapCell cell = FindCellByLocation(location);
+                if (cell != null) cell.pathIndicator.gameObject.SetActive(true);
+            }
+        }
+    } // 寻路部分
 }

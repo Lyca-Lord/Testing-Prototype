@@ -37,6 +37,8 @@ namespace CommandCard
         public void OnPointerClick(PointerEventData eventData)
         {
             if (column.IsLock) return;
+            if (column.isPlayer != Central.isPlayerTurn) return;
+
             isSelected = !isSelected;
             SelectEvent.Invoke(this, isSelected);
             if (isSelected) transform.localPosition = new(0, offsetY, 0);

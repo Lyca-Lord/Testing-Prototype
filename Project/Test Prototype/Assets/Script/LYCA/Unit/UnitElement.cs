@@ -36,13 +36,13 @@ namespace Unit
         {
             currentSpeed = speed + tempSpeed;
             //Debug.Log("重置移动力 " + this.ToString());
-        } 
+        }
 
         /// <summary>
         /// 重置战术调整
         /// 只应该在回合开始时调用
         /// </summary>
-        public void ResetTactic() => currentTacticSpeed = tacticSpeed; 
+        public void ResetTactic() => currentTacticSpeed = tacticSpeed;
 
         public void ResetAttack() => currentAttackTime = 1;
     }
@@ -57,4 +57,36 @@ namespace Unit
 
         public void DecreaseAttackTime(int _tmp) => currentAttackTime -= _tmp;
     } // 实时计算部分
+
+    public partial class UnitElement
+    {
+        private Material hitMaterial;
+        private Material normalMaterial;
+        private SpriteRenderer sr;
+
+        private void Awake()
+        {
+            sr = GetComponent<SpriteRenderer>();
+        }
+
+        private void Start()
+        {
+            hitMaterial = UnitManager.Instance.hitMaterial;
+            normalMaterial = UnitManager.Instance.normalMaterial;
+        }
+
+        public void GetHit(int _tmp)
+        {
+            DecreaseHealth(_tmp);
+            StopCoroutine(Enumerator());
+            StartCoroutine(Enumerator());
+
+            IEnumerator Enumerator()
+            {
+                sr.material = hitMaterial;
+                yield return new WaitForSeconds(0.1f);
+                sr.material = normalMaterial;
+            }
+        }
+    } // 受到攻击
 }
