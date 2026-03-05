@@ -119,6 +119,7 @@
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:DOTWEEN
+-define:DOTWEEN_TEXTMESHPRO
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"Assets/Plugins/Demigiant/DemiLib/Core/DemiLib.dll"
@@ -398,6 +399,7 @@
 "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModulePhysics2D.cs"
 "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleSprite.cs"
 "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUI.cs"
+"Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUIToolkit.cs"
 "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUnityVersion.cs"
 "Assets/Plugins/Demigiant/DOTween/Modules/DOTweenModuleUtils.cs"
 "Assets/Plugins/Demigiant/DOTweenPro/DOTweenAnimation.cs"

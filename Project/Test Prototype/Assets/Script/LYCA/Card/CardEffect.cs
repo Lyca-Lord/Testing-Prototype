@@ -306,4 +306,85 @@ namespace CommandCard
             isLock = false;
         }
     } // 远程指令部分
+
+    public partial class CardEffect
+    {
+        public void TacticEnter()
+        {
+            if (isLock) return;
+            StartCoroutine(Enumerator());
+            IEnumerator Enumerator()
+            {
+                isLock = true;
+
+                CardManager.Instance.LockPlayerColumn(); // 锁定牌列，防止在战术调整过程中打出其他卡牌
+                Central.Instance.UnitSelectEvent.AddListener(TacticSelectUnit); // 监听单位被选中事件
+                Central.Instance.ActionEndEarly.AddListener(TacticActionEndEarly); // 监听行动提前结束事件
+                Central.Instance.CancelEvent.AddListener(TacticActionEndEarly); 
+                UnitCommandManager.Instance.ActionSequenceEnd.AddListener(TacticActionEnd);
+
+                //UnitManager.Instance.units.ForEach(unit =>
+                //{
+                //    unit.unitElement.ResetTactic(); // 重置战术调整移动力
+                //});
+                yield return new WaitForEndOfFrame();
+                MapManager.Instance.EnableUnitPick(unit =>
+                {
+                    return unit.unitElement.CheckTraits("Trait_CanMove") && unit.unitElement.currentTacticSpeed > 0;
+                }); // 启用单位选择，只能选择可战术调整单位
+            }
+        }
+
+        private void TacticActionEnd()
+        {
+            MapManager.Instance.EnableUnitPick(unit =>
+            {
+                return unit.unitElement.CheckTraits("Trait_CanMove") && unit.unitElement.currentTacticSpeed > 0;
+            });
+            Central.Instance.UnitSelectEvent.AddListener(TacticSelectUnit); // 重新监听单位被选中事件
+            Central.Instance.CancelEvent.AddListener(TacticActionEndEarly);
+            TacticCheckEnd(); // 检查是否还有单位可以战术调整
+        }
+
+        private void TacticCheckEnd()
+        {
+            List<Units> _units = UnitManager.Instance.units;
+            foreach (var unit in _units)
+            {
+                if (unit.unitElement.currentTacticSpeed > 0 &&
+                    unit.unitElement.CheckTraits("Trait_CanMove")) return;
+            }
+            TacticCommandEnd();
+        }
+
+        private void TacticSelectUnit(Units _unit)
+        {
+            if (!_unit.unitElement.CheckTraits("Trait_CanMove")) return;
+            if (_unit.unitElement.currentTacticSpeed <= 0) return;
+            UnitCommandManager.Instance.PushCommand_Front(new(
+                _unit,
+                ActionType.Tactic,
+                new(0, 0),
+                true
+                )); // 推入等待战术调整指令
+            Central.Instance.ActionStart?.Invoke();
+            Central.Instance.UnitSelectEvent.RemoveListener(TacticSelectUnit); // 取消监听，防止重复选择
+            Central.Instance.CancelEvent.RemoveListener(TacticActionEndEarly);
+        }
+
+        private void TacticActionEndEarly()
+        {
+            TacticCommandEnd();
+        }
+
+        private void TacticCommandEnd()
+        {
+            MapManager.Instance.DisableAllCell();
+            CardManager.Instance.UnlockPlayerColumn(); // 解锁牌列
+            Central.Instance.UnitSelectEvent.RemoveListener(TacticSelectUnit); // 取消监听
+            Central.Instance.CancelEvent.RemoveListener(TacticActionEndEarly);
+            UnitCommandManager.Instance.ActionSequenceEnd.RemoveListener(TacticActionEnd);
+            isLock = false;
+        }
+    } // 战术调整指令部分
 }

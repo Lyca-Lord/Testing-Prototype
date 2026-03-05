@@ -9,38 +9,42 @@ public class Central : MonoBehaviour
     public static Central Instance { get; private set; }
     public static bool isPlayerTurn = true;
 
+    [Header("Color Pick")]
+    public Color playerColor;
+    public Color enemyColor;
+
     [Header("Next Turn Event")]
-    public UnityEvent NextTurnStart; // 在CardColumn中调用，AI直接调用，玩家需要点击按钮
-    public UnityEvent TurnBeginEvent; // 也是在CardColumn中调用
+    [HideInInspector] public UnityEvent NextTurnStart; // 在CardColumn中调用，AI直接调用，玩家需要点击按钮
+    [HideInInspector] public UnityEvent TurnBeginEvent; // 也是在CardColumn中调用
 
     [Header("For Action Sequence")]
-    public UnityEvent ActionStart; // 在UnitCommandManager中调用
-    public UnityEvent ActionEnd; // 在UnitCommandManager中调用
-    public UnityEvent ActionEndEarly;
+    [HideInInspector] public UnityEvent ActionStart; // 在UnitCommandManager中调用
+    [HideInInspector] public UnityEvent ActionEnd; // 在UnitCommandManager中调用
+    [HideInInspector] public UnityEvent ActionEndEarly;
 
     [Header("For Type Action")]
-    public UnityEvent<UnitCommand> MoveAction;
-    public UnityEvent<UnitCommand> MeleeAction;
-    public UnityEvent<UnitCommand> RangeAction;
-    public UnityEvent<UnitCommand> SkillAction;
-    public UnityEvent<UnitCommand> MagicAction;
+    [HideInInspector] public UnityEvent<UnitCommand> MoveAction;
+    [HideInInspector] public UnityEvent<UnitCommand> MeleeAction;
+    [HideInInspector] public UnityEvent<UnitCommand> RangeAction;
+    [HideInInspector] public UnityEvent<UnitCommand> SkillAction;
+    [HideInInspector] public UnityEvent<UnitCommand> MagicAction;
 
     [Header("For Action End")]
-    public UnityEvent<UnitCommand> MoveEnd;
-    public UnityEvent<UnitCommand> MeleeEnd;
-    public UnityEvent<UnitCommand> RangeEnd;
-    public UnityEvent<UnitCommand> SkillEnd;
-    public UnityEvent<UnitCommand> MagicEnd;
+    [HideInInspector] public UnityEvent<UnitCommand> MoveEnd;
+    [HideInInspector] public UnityEvent<UnitCommand> MeleeEnd;
+    [HideInInspector] public UnityEvent<UnitCommand> RangeEnd;
+    [HideInInspector] public UnityEvent<UnitCommand> SkillEnd;
+    [HideInInspector] public UnityEvent<UnitCommand> MagicEnd;
 
     [Header("Mouse Event")]
-    public UnityEvent<Vector2> ClickEvent;
-    public UnityEvent<Units> UnitSelectEvent;
-    public UnityEvent ReleaseSelectEvent;
-    public UnityEvent CancelEvent;
+    [HideInInspector] public UnityEvent<Vector2> ClickEvent;
+    [HideInInspector] public UnityEvent<Units> UnitSelectEvent;
+    [HideInInspector] public UnityEvent ReleaseSelectEvent;
+    [HideInInspector] public UnityEvent CancelEvent;
 
     [Header("Card Action")]
-    public UnityEvent CardPlayEvent;
-    public UnityEvent CardEndEvent;
+    [HideInInspector] public UnityEvent CardPlayEvent;
+    [HideInInspector] public UnityEvent CardEndEvent;
 
     private void Awake()
     {

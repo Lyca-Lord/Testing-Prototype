@@ -36,7 +36,7 @@ namespace Unit
             //}
             foreach(var i in units)
             {
-                i.SetUp(MapManager.Instance.FindCellByLocation(i.location));
+                i.SetUp(MapManager.Instance.FindCellByLocation(i.location), true);
             }
         }
 
@@ -45,7 +45,7 @@ namespace Unit
             MapCell cell = MapManager.Instance.FindCellByLocation(_location);
             GameObject gameObject = Instantiate(unitPrefab);
             Units unit = gameObject.GetComponent<Units>();
-            unit.SetUp(cell);
+            unit.SetUp(cell, true);
             units.Add(unit);
         }
     }

@@ -85,4 +85,9 @@ public partial class CardManager
             playerColumn.ReconstructDeck();
         else enemyColumn.ReconstructDeck();
     }
+
+    public void IntoTactic()
+    {
+        CardEffect.Instance.TacticEnter();
+    }
 } // 卡牌效果部分

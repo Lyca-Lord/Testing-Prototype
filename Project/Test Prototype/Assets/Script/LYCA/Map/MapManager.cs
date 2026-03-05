@@ -171,7 +171,11 @@ namespace Map
 
         public void ClaerAllCellPath()
         {
-            foreach (var i in cellList) i.movePath.Clear();
+            foreach (var i in cellList)
+            {
+                i.movePath.Clear();
+                i.distance = 10001;
+            }
         } // 在移动之后再调用
 
         /// <summary>
@@ -186,6 +190,7 @@ namespace Map
         public void FindMovePath(Vector2 startPoint, Vector2 endPoint, int step, bool isPlayer)
         {
             Queue<CellNode> queue = new();
+            //Debug.LogWarning("Find Move Path");
             //List<Vector2> locations = new();
 
             int[] dx, dy;
@@ -216,6 +221,7 @@ namespace Map
                 if (node.location == endPoint)
                 {
                     MapCell cell = FindCellByLocation(endPoint);
+                    cell.distance = node.distance;
                     cell.movePath = node.path;
                     return;
                 }
@@ -227,9 +233,9 @@ namespace Map
                     MapCell nextCell = FindCellByLocation(nextLocation);
                     if (nextCell == null) continue; // 越界
                     int cost = nextCell.type == 2 ? 2 : 1; // 不同地形的行动力消耗
-                    
-                    if (node.distance + cost > step) continue; // 超出步数限制
-                    if (nextCell.IsWalkable(isPlayer)) continue; // 有单位阻挡
+
+                    if (node.distance + Distance(node.location, endPoint, "Manhattan") > step) continue; // 超出步数限制
+                    if (!nextCell.IsWalkable(isPlayer)) continue; // 有单位阻挡
 
                     CellNode nextNode = new(nextLocation, node.distance + cost, node.location);
                     nextNode.path.AddRange(node.path);
@@ -241,7 +247,7 @@ namespace Map
 
         public void HighLightMovePath(Vector2 startPoint, int step, bool isPlayer)
         {
-            foreach(var i in cellList)
+            foreach (var i in cellList)
             {
                 if (Distance(i.location, startPoint, "Manhattan") > step) continue;
                 FindMovePath(startPoint, i.location, step, isPlayer); // 每次只找一个点的最短路径
@@ -252,13 +258,13 @@ namespace Map
 
         public void HideAllPath()
         {
-            foreach(var i in cellList) i.pathIndicator.gameObject.SetActive(false);
+            foreach (var i in cellList) i.pathIndicator.gameObject.SetActive(false);
         }
 
         public void ShowPath(List<Vector2> path)
         {
-            foreach(var i in cellList) i.pathIndicator.gameObject.SetActive(false);
-            foreach(var location in path)
+            foreach (var i in cellList) i.pathIndicator.gameObject.SetActive(false);
+            foreach (var location in path)
             {
                 MapCell cell = FindCellByLocation(location);
                 if (cell != null) cell.pathIndicator.gameObject.SetActive(true);

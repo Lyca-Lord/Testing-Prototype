@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Unit
@@ -14,7 +15,8 @@ namespace Unit
         public int defend;
         public int speed;
 
-        [Header("Temp Addition")] // 回合结束后清空的增益
+        [Header("Temp Addition")] // 只持续一轮的增益，回合开始时重置
+        public int tempShield;
         public int tempHealth;
         public int tempAttack;
         public int tempDefend;
@@ -25,9 +27,15 @@ namespace Unit
 
         [Header("Current Parameter")]
         public int currentSpeed = 0;
+        public int currentShield = 0;   
         public int currentHealth = 0;
         public int currentAttackTime = 0;
         public int currentTacticSpeed = 0;
+
+        public void SetUp()
+        {
+            ResetHealthText();
+        }
 
         public bool CheckTraits(string _traitName)
             => traits.Find(t => t.name == _traitName) != null;
@@ -53,9 +61,19 @@ namespace Unit
 
         public void DecreaseCurrentTacticSpeed(int _tmp) => currentTacticSpeed -= _tmp;
 
-        public void DecreaseHealth(int _tmp) => currentHealth -= _tmp;
+        public void DecreaseHealth(int _tmp)
+        {
+            currentHealth -= _tmp;
+            ResetHealthText();
+        }
 
         public void DecreaseAttackTime(int _tmp) => currentAttackTime -= _tmp;
+
+        public void AddCurrentShield(int _tmp)
+        {
+            currentShield += _tmp;
+            ResetHealthText();
+        }
     } // 实时计算部分
 
     public partial class UnitElement
@@ -89,4 +107,29 @@ namespace Unit
             }
         }
     } // 受到攻击
+
+    public partial class UnitElement
+    {
+        [Header("Health Display")]
+        public SpriteRenderer shieldIcon;
+        public TextMeshPro healthText;
+
+        private void OnEnable()
+        {
+            //healthText = transform.Find("Heart Number").GetComponent<TextMeshPro>();
+        }
+
+        private void OnValidate()
+        {
+            healthText = transform.Find("Heart Icon").GetComponentInChildren<TextMeshPro>();
+        }
+
+        private void ResetHealthText()
+        {
+            healthText.text = 
+                "x" + (currentHealth + currentShield + tempShield).ToString();
+            if(currentShield + tempShield > 0)shieldIcon.enabled = true;
+            else shieldIcon.enabled = false;
+        }
+    } // UI显示部分
 }

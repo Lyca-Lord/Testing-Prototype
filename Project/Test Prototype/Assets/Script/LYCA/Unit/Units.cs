@@ -1,6 +1,7 @@
 using Map;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Unit
@@ -99,11 +100,15 @@ namespace Unit
             }
         }
 
-        public void SetUp(MapCell _cell)
+        public void SetUp(MapCell _cell, bool isPlayer)
         {
             if (_cell == null) Debug.LogWarning("噢哟，格子不存在唷");
+            
             location = _cell.location;
             _cell.CellRegister(this);
+            unitElement.SetUp();
+
+            square.color = (isPlayer ? Central.Instance.playerColor : Central.Instance.enemyColor);
         }
 
     } // 单位类
@@ -255,9 +260,12 @@ namespace Unit
             base.Enter(_position);
             mapCellToward = MapManager.Instance.FindCellByLocation(_position);
             // 获取路径列表
+
             locations = new List<Vector2>(mapCellToward.movePath);
             MapManager.Instance.ClaerAllCellPath();
             unit.cell.CellRelease();
+
+            unit.CloseSquare();
         }
 
         public override void Exit()
@@ -266,6 +274,7 @@ namespace Unit
             Central.Instance.MoveEnd?.Invoke(unit.currentCommand);
             MapManager.Instance.ClaerAllCellPath();
 
+            unit.OpenSquare();
             unit.ActionEnd(); // 延迟一帧唤起行动结束事件，方便做行动插入
             base.Exit();
         }
@@ -397,7 +406,7 @@ namespace Unit
                     true
                 ));
                 unit.unitElement.DecreaseCurrentSpeed(
-                    MapManager.Instance.Distance(unit.location, clickPosition, "Manhattan")
+                    MapManager.Instance.FindCellByLocation(clickPosition).distance
                     );
                 stateMachine.ChangeState(unit.idleState, Vector2.zero);
             }
@@ -587,7 +596,7 @@ namespace Unit
     /// 战术调整阶段
     /// 调用规则：进入阶段的Vec2中，第一个元素应指明
     /// 本次移动是奖励移动还是普通战术调整
-    /// 如果是是奖励移动，不消耗战术调整
+    /// 如果是奖励移动，不消耗战术调整
     /// 约定第一个元素大于0.5为奖励移动
     /// </summary>
     public class TacticState : UnitState
@@ -602,39 +611,24 @@ namespace Unit
         public override void Enter(Vector2 _position)
         {
             base.Enter(_position);
-            Central.Instance.ClickEvent.AddListener(GetClick);
-            Central.Instance.CancelEvent.AddListener(Cancel);
             isBonusMove = _position.x > 0.5f; // 约定大于0.5为true，小于等于0.5为false
             movePoint = isBonusMove ? unit.unitElement.tacticSpeed : unit.unitElement.currentTacticSpeed;
 
-            MapManager.Instance.EnableCellByRange(
-                unit.location,
-                movePoint,
-                "Manhattan"
-                );
+            Central.Instance.ClickEvent.AddListener(GetClick);
+            Central.Instance.CancelEvent.AddListener(Cancel);
+            MapManager.Instance.HighLightMovePath(
+                unit.cell.location,
+                unit.unitElement.currentTacticSpeed,
+                unit.isPlayer
+            );
         }
 
         public override void Exit()
         {
+            unit.ActionEnd();
             Central.Instance.ClickEvent.RemoveListener(GetClick);
             Central.Instance.CancelEvent.RemoveListener(Cancel);
-            UnitCommandManager.Instance.PushCommand_Front(new(
-                unit,
-                ActionType.Move,
-                clickPosition,
-                true
-                ));
-            //Central.ActionStart?.Invoke();
-            unit.ActionEnd(); // 延迟唤起行动结束事件，方便做行动插入
             MapManager.Instance.DisableAllCell();
-
-            if (!isBonusMove)
-            {
-                unit.unitElement.DecreaseCurrentTacticSpeed(
-                    MapManager.Instance.Distance(unit.location, clickPosition, "Manhattan")
-                    );
-            } // 非奖励移动才消耗战术调整点
-
             base.Exit();
         }
 
@@ -642,7 +636,26 @@ namespace Unit
         {
             base.Update();
             if (ExitCondition())
+            {
+                UnitCommandManager.Instance.PushCommand_Front(new(
+                    unit,
+                    ActionType.Move,
+                    clickPosition,
+                    true
+                ));
+                if (!isBonusMove)
+                {
+                    unit.unitElement.DecreaseCurrentTacticSpeed(
+                        MapManager.Instance.FindCellByLocation(clickPosition).distance
+                    );
+                } // 非奖励移动才消耗战术调整点
                 stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            }
+            if (isCancel)
+            {
+                MapManager.Instance.ClaerAllCellPath();
+                stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            }
         }
 
         private bool ExitCondition()
@@ -654,3 +667,26 @@ namespace Unit
         }
     } // 战术调整，用于战术调整阶段和奖励移动机会
 } // 不同状态设定（和ActionType类型相同）
+
+namespace Unit
+{
+    public partial class Units
+    {
+        [Header("Attach")]
+        public List<SpriteRenderer> icons;
+        public List<TextMeshPro> tmps;
+        public SpriteRenderer square;
+
+        public void ChangeSortingOverlay(int _order)
+        {
+            sr.sortingOrder = _order;
+            foreach (var icon in icons) icon.sortingOrder = _order;
+            foreach (var tmp in tmps) tmp.sortingOrder = _order;
+            square.sortingOrder = _order - 1;
+        }
+
+        public void CloseSquare() => square.enabled = false;
+
+        public void OpenSquare() => square.enabled = true;
+    }
+}

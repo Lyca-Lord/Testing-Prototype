@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections.Generic;
 using Unit;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace Map
         [Header("Contain")]
         public Units unit; // 当前格子包含的单位，若无则为null
         public List<Vector2> movePath;
+        public int distance;
 
         public Vector2 Position => transform.position;
 
@@ -25,7 +27,7 @@ namespace Map
         public void CellRegister(Units _unit)
         {
             unit = _unit;
-            unit.sr.sortingOrder = this.sr.sortingOrder;
+            unit.ChangeSortingOverlay(this.sr.sortingOrder);
             unit.transform.SetParent(unitParent);
             unit.transform.position = Position;
             unit.location = location;
