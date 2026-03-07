@@ -6,6 +6,12 @@ using UnityEngine;
 
 namespace CommandCard
 {
+    public partial class CardEffect
+    {
+        [Header("Infor")]
+        public bool isPlayer;
+    }
+
     public partial class CardEffect : MonoBehaviour
     {
         public static CardEffect Instance;
@@ -21,7 +27,6 @@ namespace CommandCard
         private void Update()
         {
             if (isLock) return;
-            if (Input.GetKeyDown(KeyCode.E)) MoveEnter();
         }
 
         /// <summary>
@@ -29,9 +34,10 @@ namespace CommandCard
         /// 当启动移动指令时，监听单位被选中事件，推入等待移动指令
         /// 防呆指令去掉了，需要测试是否会有问题
         /// </summary>
-        public void MoveEnter()
+        public void MoveEnter(bool _isPlayer)
         {
             if (isLock) return;
+            isPlayer = _isPlayer;
             StartCoroutine(Enumerator());
             IEnumerator Enumerator()
             {
@@ -45,12 +51,13 @@ namespace CommandCard
 
                 UnitManager.Instance.units.ForEach(unit =>
                 {
+                    if (unit.isPlayer != isPlayer) return;
                     unit.unitElement.ResetMove(); // 重置移动力
                 });
                 yield return new WaitForEndOfFrame();
                 MapManager.Instance.EnableUnitPick(unit =>
                 {
-                    return unit.unitElement.CheckTraits("Trait_CanMove") && unit.unitElement.currentSpeed > 0;
+                    return unit.unitElement.CheckTraits("Trait_CanMove") && unit.isPlayer == isPlayer && !unit.isLocked;
                 }); // 启用单位选择，只能选择可移动单位
             }
         }
@@ -59,9 +66,10 @@ namespace CommandCard
         {
             MapManager.Instance.EnableUnitPick(unit =>
             {
-                return unit.unitElement.CheckTraits("Trait_CanMove") && unit.unitElement.currentSpeed > 0;
+                return unit.unitElement.CheckTraits("Trait_CanMove")
+                && unit.unitElement.currentSpeed > 0 && unit.isPlayer == isPlayer && !unit.isLocked;
             });
-            //Central.Instance.UnitSelectEvent.RemoveListener(MoveSelectUnit); // 取消监听防呆
+            //Central.Instance.UnitSelectEvent.RemoveListener(MoveSelectUnit); // 取消监听，防呆
             Central.Instance.UnitSelectEvent.AddListener(MoveSelectUnit); // 重新监听单位被选中事件
             MoveCheckEnd(); // 检查是否还有单位可以移动
         }
@@ -72,7 +80,7 @@ namespace CommandCard
             foreach (var unit in _units)
             {
                 if (unit.unitElement.currentSpeed > 0 &&
-                    unit.unitElement.CheckTraits("Trait_CanMove")) return;
+                    unit.unitElement.CheckTraits("Trait_CanMove") && unit.isPlayer == isPlayer) return;
             }
             MoveCommandEnd();
         }
@@ -86,7 +94,8 @@ namespace CommandCard
                 _unit,
                 ActionType.WaitForMove,
                 new(0, 0),
-                true
+                true,
+                false
                 )); // 推入等待移动指令
             Central.Instance.ActionStart?.Invoke();
             Central.Instance.UnitSelectEvent.RemoveListener(MoveSelectUnit); // 取消监听，防止重复选择
@@ -109,7 +118,7 @@ namespace CommandCard
 
     public partial class CardEffect
     {
-        public void ReinforceEnter()
+        public void ReinforceEnter(bool _isPlayer)
         {
             if (isLock) return;
             StartCoroutine(Enumerator());
@@ -120,12 +129,12 @@ namespace CommandCard
 
                 CardManager.Instance.LockPlayerColumn(); // 锁定牌列，防止在移动过程中打出其他卡牌
                 Central.Instance.UnitSelectEvent.AddListener(ReinforceSelectUnit); // 监听单位被选中事件
-
+                Central.Instance.ActionEndEarly.AddListener(ReinforceActionEndEarly); // 监听行动提前结束事件
                 UnitCommandManager.Instance.ActionSequenceEnd.AddListener(ReinforceActionEnd);
                 yield return new WaitForEndOfFrame();
                 MapManager.Instance.EnableUnitPick(unit =>
                 {
-                    return unit.unitElement.CheckTraits("Trait_Flag");
+                    return unit.unitElement.CheckTraits("Trait_Flag") && unit.isPlayer == _isPlayer;
                 }); // 启用单位选择，只能选择可增援单位
             }
         }
@@ -134,6 +143,7 @@ namespace CommandCard
         {
             isLock = false;
             Central.Instance.UnitSelectEvent.RemoveListener(ReinforceSelectUnit);
+            Central.Instance.ActionEndEarly.RemoveListener(ReinforceActionEndEarly); // 取消监听行动提前结束事件
             UnitCommandManager.Instance.ActionSequenceEnd.RemoveListener(ReinforceActionEnd);
             CardManager.Instance.UnlockPlayerColumn(); // 解锁牌列
         }
@@ -145,18 +155,34 @@ namespace CommandCard
                 _unit,
                 ActionType.Reinforce,
                 new(0, 0),
+                true,
                 true
                 )); // 推入增援指令
-            Debug.LogWarning("推入增援");
             Central.Instance.ActionStart?.Invoke();
+        }
+
+        private void ReinforceActionEndEarly()
+        {
+            ReinforceCommandEnd();
+        }
+
+        private void ReinforceCommandEnd()
+        {
+            MapManager.Instance.DisableAllCell();
+            CardManager.Instance.UnlockPlayerColumn(); // 解锁牌列
+            Central.Instance.UnitSelectEvent.RemoveListener(ReinforceSelectUnit); // 取消监听
+            Central.Instance.ActionEndEarly.RemoveListener(ReinforceActionEndEarly); // 取消监听行动提前结束事件
+            UnitCommandManager.Instance.ActionSequenceEnd.RemoveListener(ReinforceActionEnd);
+            isLock = false;
         }
     } // 增援部分   
 
     public partial class CardEffect
     {
-        public void MeleeActionEnter()
+        public void MeleeActionEnter(bool _isPlayer)
         {
             if (isLock) return;
+            isPlayer = _isPlayer;
             StartCoroutine(Enumerator());
             IEnumerator Enumerator()
             {
@@ -170,12 +196,13 @@ namespace CommandCard
 
                 UnitManager.Instance.units.ForEach(unit =>
                 {
+                    if (unit.isPlayer != isPlayer) return;
                     unit.unitElement.ResetAttack(); // 重置攻击次数
                 });
                 yield return new WaitForEndOfFrame();
                 MapManager.Instance.EnableUnitPick(unit =>
                 {
-                    return unit.unitElement.CheckTraits("Trait_CanMelee");
+                    return unit.unitElement.CheckTraits("Trait_CanMelee") && unit.isPlayer == isPlayer && !unit.isLocked;
                 }); // 启用单位选择，只能选择可近战单位
             }
         }
@@ -184,7 +211,7 @@ namespace CommandCard
         {
             MapManager.Instance.EnableUnitPick(unit =>
             {
-                return unit.unitElement.CheckTraits("Trait_CanMelee") && unit.unitElement.currentAttackTime > 0;
+                return unit.unitElement.CheckTraits("Trait_CanMelee") && unit.unitElement.currentAttackTime > 0 && unit.isPlayer == isPlayer && !unit.isLocked;
             });
             //Central.Instance.UnitSelectEvent.RemoveListener(MeleeSelectUnit); // 取消监听，防呆
             Central.Instance.UnitSelectEvent.AddListener(MeleeSelectUnit); // 重新监听单位被选中事件
@@ -197,7 +224,7 @@ namespace CommandCard
             foreach (var unit in _units)
             {
                 if (unit.unitElement.currentAttackTime > 0 &&
-                    unit.unitElement.CheckTraits("Trait_CanMelee")) return;
+                    unit.unitElement.CheckTraits("Trait_CanMelee") && unit.isPlayer == isPlayer) return;
             }
             MeleeCommandEnd();
         }
@@ -210,7 +237,8 @@ namespace CommandCard
                 _unit,
                 ActionType.WaitForMelee,
                 new(0, 0),
-                true
+                true,
+                false
                 )); // 推入等待近战指令
             Central.Instance.ActionStart?.Invoke();
             Central.Instance.UnitSelectEvent.RemoveListener(MeleeSelectUnit); // 取消监听，防止重复选择
@@ -234,9 +262,10 @@ namespace CommandCard
 
     public partial class CardEffect
     {
-        public void RangedActionEnter()
+        public void RangedActionEnter(bool _isPlayer)
         {
             if (isLock) return;
+            isPlayer = _isPlayer;
             StartCoroutine(Enumerator());
             IEnumerator Enumerator()
             {
@@ -247,12 +276,13 @@ namespace CommandCard
                 UnitCommandManager.Instance.ActionSequenceEnd.AddListener(RangedActionEnd);
                 UnitManager.Instance.units.ForEach(unit =>
                 {
+                    if (unit.isPlayer != isPlayer) return;
                     unit.unitElement.ResetAttack(); // 重置攻击次数
                 });
                 yield return new WaitForEndOfFrame();
                 MapManager.Instance.EnableUnitPick(unit =>
                 {
-                    return unit.unitElement.CheckTraits("Trait_CanRanged");
+                    return unit.unitElement.CheckTraits("Trait_CanRanged") && unit.isPlayer == isPlayer && !unit.isLocked;
                 }); // 启用单位选择，只能选择可远程单位
             }
         }
@@ -261,7 +291,7 @@ namespace CommandCard
         {
             MapManager.Instance.EnableUnitPick(unit =>
             {
-                return unit.unitElement.CheckTraits("Trait_CanRanged") && unit.unitElement.currentAttackTime > 0;
+                return unit.unitElement.CheckTraits("Trait_CanRanged") && unit.unitElement.currentAttackTime > 0 && unit.isPlayer == isPlayer && !unit.isLocked;
             });
             Central.Instance.UnitSelectEvent.AddListener(RangedSelectUnit); // 重新监听单位被选中事件
             RangedCheckEnd(); // 检查是否还有单位可以远程
@@ -273,7 +303,7 @@ namespace CommandCard
             foreach (var unit in _units)
             {
                 if (unit.unitElement.currentAttackTime > 0 &&
-                    unit.unitElement.CheckTraits("Trait_CanRanged")) return;
+                    unit.unitElement.CheckTraits("Trait_CanRanged") && unit.isPlayer == isPlayer) return;
             }
             RangedCommandEnd();
         }
@@ -286,7 +316,8 @@ namespace CommandCard
                 _unit,
                 ActionType.WaitForRanged,
                 new(0, 0),
-                true
+                true,
+                false
                 )); // 推入等待远程指令
             Central.Instance.ActionStart?.Invoke();
             Central.Instance.UnitSelectEvent.RemoveListener(RangedSelectUnit); // 取消监听，防止重复选择
@@ -309,9 +340,10 @@ namespace CommandCard
 
     public partial class CardEffect
     {
-        public void TacticEnter()
+        public void TacticEnter(bool _isPlayer)
         {
             if (isLock) return;
+            isPlayer = _isPlayer;
             StartCoroutine(Enumerator());
             IEnumerator Enumerator()
             {
@@ -320,17 +352,13 @@ namespace CommandCard
                 CardManager.Instance.LockPlayerColumn(); // 锁定牌列，防止在战术调整过程中打出其他卡牌
                 Central.Instance.UnitSelectEvent.AddListener(TacticSelectUnit); // 监听单位被选中事件
                 Central.Instance.ActionEndEarly.AddListener(TacticActionEndEarly); // 监听行动提前结束事件
-                Central.Instance.CancelEvent.AddListener(TacticActionEndEarly); 
+                Central.Instance.CancelEvent.AddListener(TacticActionEndEarly);
                 UnitCommandManager.Instance.ActionSequenceEnd.AddListener(TacticActionEnd);
 
-                //UnitManager.Instance.units.ForEach(unit =>
-                //{
-                //    unit.unitElement.ResetTactic(); // 重置战术调整移动力
-                //});
                 yield return new WaitForEndOfFrame();
                 MapManager.Instance.EnableUnitPick(unit =>
                 {
-                    return unit.unitElement.CheckTraits("Trait_CanMove") && unit.unitElement.currentTacticSpeed > 0;
+                    return unit.unitElement.CheckTraits("Trait_CanMove") && unit.unitElement.currentTacticSpeed > 0 && unit.isPlayer == isPlayer;
                 }); // 启用单位选择，只能选择可战术调整单位
             }
         }
@@ -339,7 +367,7 @@ namespace CommandCard
         {
             MapManager.Instance.EnableUnitPick(unit =>
             {
-                return unit.unitElement.CheckTraits("Trait_CanMove") && unit.unitElement.currentTacticSpeed > 0;
+                return unit.unitElement.CheckTraits("Trait_CanMove") && unit.unitElement.currentTacticSpeed > 0 && unit.isPlayer == isPlayer;
             });
             Central.Instance.UnitSelectEvent.AddListener(TacticSelectUnit); // 重新监听单位被选中事件
             Central.Instance.CancelEvent.AddListener(TacticActionEndEarly);
@@ -352,7 +380,7 @@ namespace CommandCard
             foreach (var unit in _units)
             {
                 if (unit.unitElement.currentTacticSpeed > 0 &&
-                    unit.unitElement.CheckTraits("Trait_CanMove")) return;
+                    unit.unitElement.CheckTraits("Trait_CanMove") && unit.isPlayer == isPlayer) return;
             }
             TacticCommandEnd();
         }
@@ -365,7 +393,8 @@ namespace CommandCard
                 _unit,
                 ActionType.Tactic,
                 new(0, 0),
-                true
+                true,
+                false
                 )); // 推入等待战术调整指令
             Central.Instance.ActionStart?.Invoke();
             Central.Instance.UnitSelectEvent.RemoveListener(TacticSelectUnit); // 取消监听，防止重复选择
@@ -387,4 +416,47 @@ namespace CommandCard
             isLock = false;
         }
     } // 战术调整指令部分
+
+    public partial class CardEffect
+    {
+        public void DeployEnter(bool _isPlayer)
+        {
+            if (isLock) return;
+            StartCoroutine(Enumerator());
+
+            IEnumerator Enumerator()
+            {
+                isLock = true;
+
+                Central.Instance.ClickEvent.AddListener(DeployOnClick); // 监听玩家点格事件
+                Central.Instance.ActionEndEarly.AddListener(DeployActionEndEarly); // 监听跳过当前部署事件
+                yield return new WaitForEndOfFrame();
+                MapManager.Instance.EnableForDeploying(_isPlayer); // 部署阶段特供
+            }
+        }
+
+        private void DeployOnClick(Vector2 _pos)
+        {
+            MapCell cell = MapManager.Instance.FindCellByLocation(_pos);
+            if (cell == null || cell.unit != null) return; // 格子有人则不放
+
+            DeployCommandEnd();
+            UnitManager.Instance.CreateUnit(_pos); // 在点击的格子创建单位，并触发 AfterReinforceAction 回调
+        }
+
+        private void DeployActionEndEarly()
+        {
+            // 玩家跳过本次部署：直接结束，不放置单位，仍然触发 AfterReinforceAction 通知 DeployPhaseManager 继续
+            DeployCommandEnd();
+            UnitManager.Instance.AfterReinforceAction?.Invoke();
+        }
+
+        private void DeployCommandEnd()
+        {
+            MapManager.Instance.DisableAllCell();
+            Central.Instance.ClickEvent.RemoveListener(DeployOnClick); // 取消监听点格
+            Central.Instance.ActionEndEarly.RemoveListener(DeployActionEndEarly); // 取消监听跳过事件
+            isLock = false;
+        }
+    } // 初始部署指令部分
 }

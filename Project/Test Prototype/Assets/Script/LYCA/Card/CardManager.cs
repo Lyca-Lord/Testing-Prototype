@@ -1,4 +1,5 @@
 using CommandCard;
+using Unit;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,30 +13,38 @@ public partial class CardManager : MonoBehaviour, IInitialiazer
     public CardDeckInfo enemyDeck;
     public CardColumn enemyColumn;
 
-    private void Awake()
+    [Header("ReinforceDeck")]
+    public ReinforceCardColumn playerReinforceColumn;
+    public ReinforceCardColumn enemyReinforceColumn;
+    public UnitBox playerUnitBox;
+    public UnitBox enemyUnitBox;
+
+    private void RegisterInstance()
     {
-        // 单例唯一化：避免重复创建实例导致UnityEvent订阅累积
         if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(this.gameObject); // 跨场景持久化，避免场景切换时销毁
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void Initialize()
     {
+        RegisterInstance();
+
         playerColumn.SetUp(playerDeck);
         if (enemyColumn != null) enemyColumn.SetUp(enemyDeck);
-        //UnlockPlayerColumn();
+    
+        playerReinforceColumn.SetUp(playerUnitBox);
+        if (enemyReinforceColumn != null) enemyReinforceColumn.SetUp(enemyUnitBox);
     }
 } // 引用部分
 
 public partial class CardManager
 {
     [Header("Circumstance")]
-    public bool isPlayerTurn = true;
     public UnityEvent<bool> LockButtonsEvent = new();
     public UnityEvent UnlockButtonsEvent = new();
 
@@ -58,11 +67,37 @@ public partial class CardManager
 
 public partial class CardManager
 {
-    public void PlaySelectedCard()
+    public bool isOpenBox = false;
+    // 将在ReinforceCardColumn.Show()时设为true，在ReinforceCardColumn.Hide()时设为false
+
+    public void OpenReinforceBox()
     {
         if (Central.isPlayerTurn)
-            playerColumn.PlaySelectedCard();
-        else enemyColumn.PlaySelectedCard();
+        {
+            if (!isOpenBox) playerReinforceColumn.Show();
+            else playerReinforceColumn.Hide();
+        }
+        else
+        {
+            if (!isOpenBox) enemyReinforceColumn.Show();
+            else enemyReinforceColumn.Hide();
+        }
+    }
+
+    public void PlaySelectedCard()
+    {
+        if (isOpenBox)
+        {
+            if (Central.isPlayerTurn)
+                playerReinforceColumn.PlaySelectedCard();
+            else enemyReinforceColumn.PlaySelectedCard();
+        }
+        else
+        {
+            if (Central.isPlayerTurn)
+                playerColumn.PlaySelectedCard();
+            else enemyColumn.PlaySelectedCard();
+        }
     }
 
     public void NextTurn()
@@ -79,6 +114,13 @@ public partial class CardManager
         else enemyColumn.EndCommand();
     }
 
+    public void SkipCommand()
+    {
+        if (Central.isPlayerTurn)
+            playerColumn.SkipCommand();
+        else enemyColumn.SkipCommand();
+    }
+
     public void RebuildDeck()
     {
         if (Central.isPlayerTurn)
@@ -88,6 +130,36 @@ public partial class CardManager
 
     public void IntoTactic()
     {
-        CardEffect.Instance.TacticEnter();
+        CardEffect.Instance.TacticEnter(Central.isPlayerTurn);
     }
 } // 卡牌效果部分
+
+public partial class CardManager
+{
+    public void AddCost(bool _isPlayer, int _cost)
+    {
+        if (_isPlayer) playerColumn.AddCost(_cost);
+        else enemyColumn.AddCost(_cost);
+    }
+
+    public int GetCost(bool _isPlayer)
+        => _isPlayer ? playerColumn.reinforceCost : enemyColumn.reinforceCost;
+
+    public void ReduceCost(int _tmp)
+    {
+        if (Central.isPlayerTurn) playerColumn.ReduceCost(_tmp);
+        else enemyColumn.ReduceCost(_tmp);
+    }
+
+    public void AddPlayNum(int _tmp)
+    {
+        if (Central.isPlayerTurn) playerColumn.AddPlayCount(_tmp);
+        else enemyColumn.AddPlayCount(_tmp);
+    }
+
+    public int GetPlayNum() 
+        => Central.isPlayerTurn ? playerColumn.playCount : enemyColumn.playCount;
+
+    public int GetPlayMax() 
+        => Central.isPlayerTurn ? playerColumn.playMax : enemyColumn.playMax;
+} // 增加增援费用

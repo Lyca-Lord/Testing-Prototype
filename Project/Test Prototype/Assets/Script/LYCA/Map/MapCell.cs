@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections.Generic;
 using Unit;
 using UnityEngine;
@@ -8,6 +7,10 @@ namespace Map
     [RequireComponent(typeof(BoxCollider2D))]
     public partial class MapCell : MonoBehaviour
     {
+        [Header("Sprite")]
+        public Sprite oddSprite;
+        public Sprite evenSprite;
+
         [Header("Index")]
         public int index;
         public int type = 0; // 0为普通格子，1为障碍格子，2为水格子，可根据需要扩展
@@ -20,7 +23,7 @@ namespace Map
 
         public Vector2 Position => transform.position;
 
-        public float CellSize => sr.bounds.size.x; // 假设格子为正方形，返回格子大小
+        public float CellSize => sr.bounds.size.x + 0.05f; // 假设格子为正方形，返回格子大小
 
         public void CellRelease() => unit = null; // 当单位离开格子时调用
 
@@ -90,8 +93,12 @@ namespace Map
             indicator.gameObject.SetActive(false);
             highlight.gameObject.SetActive(false);
 
-            sr.sortingOrder = indicator.sortingOrder = highlight.sortingOrder =
-                pathIndicator.sortingOrder = _index;
+            sr.sprite = ((index + _location.x) % 2 == 0) ? evenSprite : oddSprite;
+
+            sr.sortingOrder = _index;
+            highlight.sortingOrder = _index + 1;
+            indicator.sortingOrder = _index + 2;
+            pathIndicator.sortingOrder = _index + 3;
         }
 
         public void DestoryCell()
@@ -141,7 +148,7 @@ namespace Map
 
         private void ShowAllPathIndicator()
         {
-            foreach(var i in movePath)
+            foreach (var i in movePath)
             {
                 MapCell _cell = MapManager.Instance.FindCellByLocation(i);
                 _cell.pathIndicator.gameObject.SetActive(true);

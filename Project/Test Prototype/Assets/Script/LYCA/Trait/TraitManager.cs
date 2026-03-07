@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Map;
 using UnityEngine;
 
 namespace Unit
@@ -10,6 +8,8 @@ namespace Unit
         public void Start()
         {
             Central.Instance.MeleeEnd.AddListener(TraitMachine_Trait_FightwithShield);
+            Central.Instance.WaitForMeleeAction.AddListener(TraitMachine_Trait_CavalryCharge);
+            Central.Instance.MeleeEnd.AddListener(TraitMachine_Trait_Pull);
         }
     }
 
@@ -32,7 +32,7 @@ namespace Unit
 
             unit.unitElement.AddCurrentShield(1);
         }
-        
+
         /// <summary>
         /// 骑兵冲锋
         /// 近战前可以且必须移动一格
@@ -48,9 +48,35 @@ namespace Unit
                 return;
             }
             if (!unit.unitElement.CheckTraits("Trait_CavalryCharge")) return;
-            //Central.Instance.UnitCommandManager.InsertTacticalMove(_command, 0);
+            //UnitCommand _firstCommand = UnitCommandManager.Instance.actionSequence.First.Value;
+
+            if (_command.canCancel == true) _command.canCancel = false;
+            else Debug.LogWarning("加入的该指令原本应该可以取消，但检测发现无法取消");
+
+            if(_command.canSkip == false) _command.canSkip = true;
+            else Debug.LogWarning("加入的该指令原本应该无法跳过，但检测发现可以跳过");
+
             UnitCommandManager.Instance.PushCommand_Front(
-                new UnitCommand(unit, ActionType.Tactic, unit.location, false)
+                new UnitCommand(unit, ActionType.Tactic, unit.location, true, false)
+            );
+        }
+
+        private void TraitMachine_Trait_Pull(UnitCommand _command)
+        {
+            Units unit = _command.selectedUnit;
+            if (unit == null)
+            {
+                Debug.Log("技能相应单位不存在" + _command);
+                return;
+            }
+            if (!unit.unitElement.CheckTraits("Trait_Pull")) return;
+
+            Units _unit = MapManager.Instance.FindCellByLocation(_command.position).unit;
+            _unit.ApplyKnockback(
+                unit.location, 1
+                );
+            UnitCommandManager.Instance.PushCommand_Front(
+                new UnitCommand(unit, ActionType.None, unit.location, true, false)
             );
         }
     }

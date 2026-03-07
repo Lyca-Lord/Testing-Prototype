@@ -8,5 +8,6 @@ public class CardDeckInfo : ScriptableObject
 {
     [Header("卡组信息")]
     public string deckName;             // 卡组名称
+    public int originCost = 3;
     public List<CardInfo> cardList;     // 卡组中的卡片列表
 }

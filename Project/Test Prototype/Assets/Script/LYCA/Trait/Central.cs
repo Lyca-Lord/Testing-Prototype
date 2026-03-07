@@ -1,3 +1,5 @@
+using Map;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unit;
@@ -8,10 +10,12 @@ public class Central : MonoBehaviour
 {
     public static Central Instance { get; private set; }
     public static bool isPlayerTurn = true;
+    public static GamePhase currentBattlePhrase = GamePhase.Deploying;
 
     [Header("Color Pick")]
     public Color playerColor;
     public Color enemyColor;
+    public bool isPlayer;
 
     [Header("Next Turn Event")]
     [HideInInspector] public UnityEvent NextTurnStart; // 在CardColumn中调用，AI直接调用，玩家需要点击按钮
@@ -28,6 +32,11 @@ public class Central : MonoBehaviour
     [HideInInspector] public UnityEvent<UnitCommand> RangeAction;
     [HideInInspector] public UnityEvent<UnitCommand> SkillAction;
     [HideInInspector] public UnityEvent<UnitCommand> MagicAction;
+    [HideInInspector] public UnityEvent<UnitCommand> WaitForMoveAction;
+    [HideInInspector] public UnityEvent<UnitCommand> WaitForMeleeAction;
+    [HideInInspector] public UnityEvent<UnitCommand> WaitForRangeAction;
+    [HideInInspector] public UnityEvent<UnitCommand> WaitForSkillAction;
+    [HideInInspector] public UnityEvent<UnitCommand> WaitForMagicAction;
 
     [Header("For Action End")]
     [HideInInspector] public UnityEvent<UnitCommand> MoveEnd;
@@ -41,10 +50,19 @@ public class Central : MonoBehaviour
     [HideInInspector] public UnityEvent<Units> UnitSelectEvent;
     [HideInInspector] public UnityEvent ReleaseSelectEvent;
     [HideInInspector] public UnityEvent CancelEvent;
+    [HideInInspector] public UnityEvent SkipEvent;
 
     [Header("Card Action")]
     [HideInInspector] public UnityEvent CardPlayEvent;
     [HideInInspector] public UnityEvent CardEndEvent;
+    [HideInInspector] public UnityEvent<bool> CostUpdateEvent;
+    [HideInInspector] public UnityEvent<bool> PlayNumUpdateEvent;
+
+    [Header("Phase Event")]
+    [HideInInspector] public UnityEvent DeployingPhaseEnd;
+
+    [Header("Unit Event")]
+    [HideInInspector] public UnityEvent<Units> UnitDieEvent;
 
     private void Awake()
     {
@@ -71,11 +89,24 @@ public class Central : MonoBehaviour
             isPlayerTurn = !isPlayerTurn;
             Debug.Log($"Turn changed. Is player turn: {isPlayerTurn}");
         });
+
+        StartCoroutine(Enumerator());
+
+        IEnumerator Enumerator()
+        {
+            yield return new WaitForEndOfFrame();
+            MapManager.Instance.CreateMap();
+            yield return new WaitForEndOfFrame();
+            UnitManager.Instance.Register();
+            yield return new WaitForEndOfFrame();
+            DeployPhaseManager.Instance.StartDeployPhase();
+        }
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1)) CancelEvent?.Invoke();
+        isPlayer = isPlayerTurn;
     }
 
     private void InitUnityEvents()
@@ -92,6 +123,11 @@ public class Central : MonoBehaviour
         RangeAction ??= new UnityEvent<UnitCommand>();
         SkillAction ??= new UnityEvent<UnitCommand>();
         MagicAction ??= new UnityEvent<UnitCommand>();
+        WaitForMoveAction ??= new UnityEvent<UnitCommand>();
+        WaitForMeleeAction ??= new UnityEvent<UnitCommand>();
+        WaitForRangeAction ??= new UnityEvent<UnitCommand>();
+        WaitForSkillAction ??= new UnityEvent<UnitCommand>();
+        WaitForMagicAction ??= new UnityEvent<UnitCommand>();
 
         MoveEnd ??= new UnityEvent<UnitCommand>();
         MeleeEnd ??= new UnityEvent<UnitCommand>();
@@ -102,9 +138,17 @@ public class Central : MonoBehaviour
         ClickEvent ??= new UnityEvent<Vector2>();
         UnitSelectEvent ??= new UnityEvent<Units>();
         ReleaseSelectEvent ??= new UnityEvent();
+        CancelEvent ??= new UnityEvent();
+        SkipEvent ??= new UnityEvent();
 
         CardPlayEvent ??= new UnityEvent();
         CardEndEvent ??= new UnityEvent();
+        CostUpdateEvent ??= new UnityEvent<bool>();
+        PlayNumUpdateEvent ??= new UnityEvent<bool>();
+
+        DeployingPhaseEnd ??= new UnityEvent();
+
+        UnitDieEvent ??= new UnityEvent<Units>();
     }
 
     public void ClearAllUnityEvents()
@@ -120,6 +164,11 @@ public class Central : MonoBehaviour
         RangeAction?.RemoveAllListeners();
         SkillAction?.RemoveAllListeners();
         MagicAction?.RemoveAllListeners();
+        WaitForMoveAction?.RemoveAllListeners();
+        WaitForMeleeAction?.RemoveAllListeners();
+        WaitForRangeAction?.RemoveAllListeners();
+        WaitForSkillAction?.RemoveAllListeners();
+        WaitForMagicAction?.RemoveAllListeners();
 
         MoveEnd?.RemoveAllListeners();
         MeleeEnd?.RemoveAllListeners();
@@ -130,9 +179,17 @@ public class Central : MonoBehaviour
         ClickEvent?.RemoveAllListeners();
         UnitSelectEvent?.RemoveAllListeners();
         ReleaseSelectEvent?.RemoveAllListeners();
+        CancelEvent?.RemoveAllListeners();
+        SkipEvent?.RemoveAllListeners();
 
         CardPlayEvent?.RemoveAllListeners();
         CardEndEvent?.RemoveAllListeners();
+        CostUpdateEvent?.RemoveAllListeners();
+        PlayNumUpdateEvent?.RemoveAllListeners();
+
+        DeployingPhaseEnd?.RemoveAllListeners();
+        
+        UnitDieEvent?.RemoveAllListeners();
     }
 
     private void OnDestroy()
@@ -143,4 +200,12 @@ public class Central : MonoBehaviour
             Instance = null;
         }
     }
+}
+
+public enum GamePhase 
+{
+    Deploying,
+    FirstTactic,
+    Battle,
+    Annihilate
 }

@@ -32,9 +32,14 @@ namespace Unit
         public int currentAttackTime = 0;
         public int currentTacticSpeed = 0;
 
+        [Header("Component")]
+        public Units unit;
+
         public void SetUp()
         {
+            currentHealth = health;
             ResetHealthText();
+            unit = GetComponent<Units>();
         }
 
         public bool CheckTraits(string _traitName)
@@ -65,6 +70,12 @@ namespace Unit
         {
             currentHealth -= _tmp;
             ResetHealthText();
+
+            if (currentHealth <= 0)
+            {
+                Central.Instance.UnitDieEvent?.Invoke(unit);
+                Destroy(gameObject);
+            }
         }
 
         public void DecreaseAttackTime(int _tmp) => currentAttackTime -= _tmp;

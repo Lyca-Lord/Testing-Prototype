@@ -39,6 +39,7 @@ namespace CommandCard
             originPos = transform.localPosition;
 
             TurnBegin();
+            SetCost(_deck.originCost);
             Central.Instance.TurnBeginEvent.AddListener(TurnBegin);
         } // 初始化牌列，设置牌组信息，清空手牌，洗牌并抽取至最大手牌数
 
@@ -58,6 +59,8 @@ namespace CommandCard
 
         public void PlaySelectedCard()
         {
+            if (selectedCard == null) return;
+            if (CardManager.Instance.GetPlayNum() >= CardManager.Instance.GetPlayMax()) return;
             selectedCard.CardEffect();
             Discard(selectedCard);
         } // 玩家选中卡牌后，执行卡牌效果并将其弃置
@@ -68,11 +71,26 @@ namespace CommandCard
             Central.Instance.ActionEndEarly?.Invoke();
         } // 结束指令，若单位正在行动则不执行
 
+        public void SkipCommand()
+        {
+            //if (UnitCommandManager.isUnitActing) return;
+            Central.Instance.SkipEvent?.Invoke();
+        }
+
         public void NextTurn()
         {
             if (UnitCommandManager.isUnitActing) return;
             Central.Instance.NextTurnStart?.Invoke();
             StartCoroutine(Enumerator());
+
+            AddCost(costAddition); // 每回合增加费用
+            SetPlayCount(0); // 重置已打出卡牌数
+            UnitManager.Instance.units.ForEach(unit =>
+            {
+                if (unit.isPlayer != isPlayer) return;
+                unit.unitElement.ResetTactic(); // 重置战术调整移动力
+            });
+            UnitManager.Instance.UnlockUnit(isPlayer); // 解锁单位，允许行动
 
             IEnumerator Enumerator()
             {
@@ -166,6 +184,7 @@ namespace CommandCard
 
         public void ReconstructDeck()
         {
+            if (CardManager.Instance.GetPlayNum() >= CardManager.Instance.GetPlayMax()) return;
             StartCoroutine(Enumerator());
 
             IEnumerator Enumerator()
@@ -186,6 +205,8 @@ namespace CommandCard
                 DrawCardToMax();
                 DeckRebuildEvent?.Invoke();
                 IsLock = false;
+
+                AddPlayCount(playMax);
             }
         }// 将手牌和弃牌堆的卡片重新放回牌堆并洗牌（先将手牌逐一弃牌）
 
@@ -234,6 +255,48 @@ namespace CommandCard
         {
             IsLock = false;
             ResetLocalPosition();
+        }
+    }
+
+    public partial class CardColumn
+    {
+        [Header("Cost to Reinforce")]
+        public int reinforceCost = 3; // 强化所需费用
+        public int maxCost = 10; // 最大费用
+        public int costAddition = 1; // 每回合增加的费用，玩家标准值为1，敌人标准值为2
+
+        [Header("Card Play Maximum")]
+        public int playMax = 3; // 每回合最大可打出卡牌数
+        public int playCount = 0; // 已打出卡牌数
+
+        private void SetCost(int _tmp)
+        {
+            reinforceCost = Mathf.Clamp(_tmp, 0, maxCost);
+            Central.Instance.CostUpdateEvent?.Invoke(isPlayer);
+        }
+
+        public void AddCost(int _tmp)
+        {
+            reinforceCost = Mathf.Min(reinforceCost + _tmp, maxCost);
+            Central.Instance.CostUpdateEvent?.Invoke(isPlayer);
+        }
+
+        public void ReduceCost(int _tmp)
+        {
+            reinforceCost = Mathf.Max(reinforceCost - _tmp, 0);
+            Central.Instance.CostUpdateEvent?.Invoke(isPlayer);
+        }
+
+        private void SetPlayCount(int _tmp)
+        {
+            playCount = Mathf.Clamp(_tmp, 0, playMax);
+            Central.Instance.PlayNumUpdateEvent?.Invoke(isPlayer);
+        }
+
+        public void AddPlayCount(int _tmp)
+        {
+            playCount = Mathf.Min(playCount + _tmp, playMax);
+            Central.Instance.PlayNumUpdateEvent?.Invoke(isPlayer);
         }
     }
 }

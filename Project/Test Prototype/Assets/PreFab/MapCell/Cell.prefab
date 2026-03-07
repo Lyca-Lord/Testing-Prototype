@@ -187,7 +187,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1152134835
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.6289307, g: 0.6289307, b: 0.6289307, a: 1}
   m_FlipX: 0
@@ -316,8 +316,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4943598562966840913}
-  - {fileID: 2118736574635353563}
   - {fileID: 834464982971744847}
+  - {fileID: 2118736574635353563}
   - {fileID: 4503103407635125180}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -430,11 +430,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7072a6faa0401d2419f23aa8f10f029a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oddSprite: {fileID: 21300000, guid: 49785dedcec4c9a4aa1b9f67083ff29a, type: 3}
+  evenSprite: {fileID: 21300000, guid: f8cfe7e8d6f57204db9748c0fceecc92, type: 3}
   index: 0
   type: 0
   location: {x: 0, y: 0}
   unit: {fileID: 0}
   movePath: []
+  distance: 0
   sr: {fileID: 4637978568881420728}
   highlight: {fileID: 2587586260502765144}
   indicator: {fileID: 4702534356675475999}

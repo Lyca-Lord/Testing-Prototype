@@ -1,4 +1,5 @@
 using Map;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using UnityEngine;
 
 namespace Unit
 {
-    public partial class UnitManager : MonoBehaviour
+    public partial class UnitManager : MonoBehaviour, IInitialiazer
     {
         public static UnitManager Instance;
 
@@ -14,39 +15,54 @@ namespace Unit
         public List<Units> units;
         public GameObject unitPrefab;
 
-        private void Awake()
+        [Header("Closure")]
+        public UnitInfo unitInfoWaitForReinforce;
+        public bool isPlayerWaitForReinforce;
+        public bool isLockedWaitForReinforce;
+        public bool isCostFree;
+        public Action AfterReinforceAction;
+
+        public void Initialize()
         {
             Instance = this;
         }
 
-        private IEnumerator Start()
+        public void Register()
         {
-            yield return new WaitForEndOfFrame();
-            //Units unit = FindFirstObjectByType<Units>();
-            //if (unit != null)
-            //{
-            //    unit.SetUp(MapManager.Instance.FindCellByLocation(new(0, 0)));
-            //    UnitCommandManager.Instance.PushCommand_Front(new(
-            //        unit,
-            //        ActionType.WaitForMove,
-            //        new(1, 1),
-            //        false
-            //        ));
-            //    Central.ActionStart?.Invoke();
-            //}
-            foreach(var i in units)
+            foreach (var i in units)
             {
-                i.SetUp(MapManager.Instance.FindCellByLocation(i.location), true);
+                i.SetUp(MapManager.Instance.FindCellByLocation(i.location));
             }
         }
 
-        public void CreateUnit(Vector2 _location, UnitInfo _info = null)
+        public void CreateUnit(Vector2 _location)
         {
+            if (!isCostFree) CardManager.Instance.ReduceCost(unitInfoWaitForReinforce.cost);
+
             MapCell cell = MapManager.Instance.FindCellByLocation(_location);
-            GameObject gameObject = Instantiate(unitPrefab);
+            GameObject gameObject = Instantiate(unitInfoWaitForReinforce.unitPrefab);
             Units unit = gameObject.GetComponent<Units>();
-            unit.SetUp(cell, true);
+            unit.SetUp(cell, isPlayerWaitForReinforce, isLockedWaitForReinforce);
             units.Add(unit);
+
+            AfterReinforceAction?.Invoke();
+        }
+
+        public void SetUnit(UnitInfo _info, bool _isPlayer, bool _isLocked, bool _isCostFree, Action _OnDone = null)
+        {
+            isCostFree = _isCostFree;
+            unitInfoWaitForReinforce = _info;
+            isPlayerWaitForReinforce = _isPlayer;
+            isLockedWaitForReinforce = _isLocked;
+            AfterReinforceAction = _OnDone;
+        }
+
+        public void UnlockUnit(bool _isPlayer)
+        {
+            foreach(var i in units)
+            {
+                if (i.isPlayer == _isPlayer) i.isLocked = false;
+            }
         }
     }
 

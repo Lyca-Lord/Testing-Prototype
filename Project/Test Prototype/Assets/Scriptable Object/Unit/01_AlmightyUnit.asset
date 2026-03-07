@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ffcdae665ef83d4bb0475c48bec9686, type: 3}
+  m_Name: 01_AlmightyUnit
+  m_EditorClassIdentifier: 
+  unitName: 
+  description: 
+  unitSprite: {fileID: -7008412969330441016, guid: 8c800dc59253fc446a885c9fabf98f34, type: 3}
+  maxHP: 0
+  attack: 0
+  defense: 0
+  speed: 0
+  attackRange: 0
+  cost: 3
+  maxi: 4
+  traits: []
+  unitPrefab: {fileID: 312594189673268217, guid: 75ee58a0650bd964f9e695af6efc32b2, type: 3}

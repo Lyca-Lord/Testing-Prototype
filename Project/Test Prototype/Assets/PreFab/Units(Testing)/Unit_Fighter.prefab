@@ -13,6 +13,10 @@ PrefabInstance:
       value: Unit_Fighter
       objectReference: {fileID: 0}
     - target: {fileID: 448627648538727328, guid: 75ee58a0650bd964f9e695af6efc32b2, type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 448627648538727328, guid: 75ee58a0650bd964f9e695af6efc32b2, type: 3}
       propertyPath: traits.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -63,7 +67,7 @@ PrefabInstance:
     - target: {fileID: 6558096768040502929, guid: 75ee58a0650bd964f9e695af6efc32b2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 4723107735738678597, guid: 9745dbe09bc4dc14291159778ab18df2, type: 3}
+      objectReference: {fileID: 5546671543968653177, guid: 9f15d62981a0dd34ba6ad072651d2fca, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -23,7 +23,7 @@ namespace Map
 
     } // 引用和参数部分
 
-    public partial class MapManager : MonoBehaviour
+    public partial class MapManager : MonoBehaviour, IInitialiazer
     {
         [Header("Cell List")]
         [SerializeField] private List<MapCell> cellList;
@@ -57,25 +57,16 @@ namespace Map
             foreach (var cell in cellList) cell.DestoryCell();
             cellList.Clear();
         }
-    } // 地图生成部分
 
-    public partial class MapManager
-    {
-        private void Awake()
+        public void Initialize()
         {
             if (Instance == null) Instance = this;
             else Destroy(gameObject);
         }
+    } // 地图生成部分
 
-        private void Start()
-        {
-            TestingCode();
-        }
-
-        private void TestingCode()
-        {
-            CreateMap();
-        }
+    public partial class MapManager
+    {
     }  // 生命周期部分
 
     public partial class MapManager
@@ -88,6 +79,7 @@ namespace Map
 
         public MapCell FindCellByLocation(Vector2 _location)
         {
+            if (CheckPositionLegal(_location) == false) return null;
             foreach (var cell in cellList)
             {
                 if (cell.location == _location) return cell;
@@ -109,6 +101,27 @@ namespace Map
             }
         } // 允许范围内的格子被点击
 
+        public void EnableForDeploying(bool _isPlayer)
+        {
+            int[] dx = new int[8] { 0, 1, 0, -1, 1, 1, -1, -1 };
+            int[] dy = new int[8] { 1, 0, -1, 0, 1, -1, 1, -1 };
+
+            DisableAllCell();
+            foreach(var cell in cellList)
+            {
+                for(int i = 0; i < 8; i++)
+                {
+                    Vector2 target = cell.location + new Vector2(dx[i], dy[i]);
+                    Units _unit = FindCellByLocation(target)?.unit;
+                    if (_unit != null)
+                    {
+                        if (_unit.unitElement.CheckTraits("Trait_Flag") && _isPlayer == _unit.isPlayer)  
+                            cell.EnableClick();
+                    }
+                }
+            }
+        }
+
         public void EnableUnitPick(Func<Units, bool> Check = null)
         {
             DisableAllCell(); // 先禁用所有格子
@@ -129,6 +142,13 @@ namespace Map
                 cell.DisableClick();
             }
         }
+
+        private bool CheckPositionLegal(Vector2 _position)
+        {
+            if (_position.x < 0 || _position.y < 0 || _position.x >= mapHeight || _position.y >= mapWidth)
+                return false;
+            return true;
+        } // 检查位置是否合法
     } // 访问器部分
 
     public partial class MapManager
@@ -176,6 +196,7 @@ namespace Map
                 i.movePath.Clear();
                 i.distance = 10001;
             }
+            HideAllPath();
         } // 在移动之后再调用
 
         /// <summary>
@@ -247,6 +268,7 @@ namespace Map
 
         public void HighLightMovePath(Vector2 startPoint, int step, bool isPlayer)
         {
+            DisableAllCell(); // 先禁用所有格子
             foreach (var i in cellList)
             {
                 if (Distance(i.location, startPoint, "Manhattan") > step) continue;

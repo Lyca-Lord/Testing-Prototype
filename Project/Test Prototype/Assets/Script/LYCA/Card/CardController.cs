@@ -61,18 +61,19 @@ namespace CommandCard
             switch (cardInfo.cardId)
             {
                 case 0:
-                    CommandCard.CardEffect.Instance.MoveEnter();
+                    CommandCard.CardEffect.Instance.MoveEnter(column.isPlayer);
                     break;
                 case 1:
-                    CommandCard.CardEffect.Instance.ReinforceEnter();
+                    CardManager.Instance.AddCost(column.isPlayer, 2);
                     break;
                 case 2:
-                    CommandCard.CardEffect.Instance.MeleeActionEnter();
+                    CommandCard.CardEffect.Instance.MeleeActionEnter(column.isPlayer);
                     break;
                 case 3:
-                    CommandCard.CardEffect.Instance.RangedActionEnter();
+                    CommandCard.CardEffect.Instance.RangedActionEnter(column.isPlayer);
                     break;
             }
+            CardManager.Instance.AddPlayNum(1);
         }
     }
 }

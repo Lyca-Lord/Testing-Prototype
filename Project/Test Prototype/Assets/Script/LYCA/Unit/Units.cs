@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Map;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace Unit
     {
         [Header("Situation")]
         public bool isPlayer = true;
+        public bool isLocked = false;
         public UnitElement unitElement;
         public Vector2 location;
         public MapCell cell;
@@ -100,10 +102,12 @@ namespace Unit
             }
         }
 
-        public void SetUp(MapCell _cell, bool isPlayer)
+        public void SetUp(MapCell _cell, bool _isPlayer = false, bool _isLocked = false)
         {
             if (_cell == null) Debug.LogWarning("噢哟，格子不存在唷");
-            
+
+            isPlayer = _isPlayer;
+            isLocked = _isLocked;
             location = _cell.location;
             _cell.CellRegister(this);
             unitElement.SetUp();
@@ -111,6 +115,16 @@ namespace Unit
             square.color = (isPlayer ? Central.Instance.playerColor : Central.Instance.enemyColor);
         }
 
+        public void SetUp(MapCell _cell)
+        {
+            if (_cell == null) Debug.LogWarning("噢哟，格子不存在唷");
+
+            location = _cell.location;
+            _cell.CellRegister(this);
+            unitElement.SetUp();
+
+            square.color = (isPlayer ? Central.Instance.playerColor : Central.Instance.enemyColor);
+        }
     } // 单位类
 
     public partial class Units
@@ -151,6 +165,7 @@ namespace Unit
         public float unscaleDuration;
         public bool isCancel = false;
         public bool isClick = false;
+        public bool isSkip = false;
         public Vector2 clickPosition;
 
         [Header("Unit")]
@@ -170,6 +185,8 @@ namespace Unit
             // 到时候补齐animator
             isClick = false;
             isCancel = false;
+            isSkip = false;
+            CardUI.OpenSkipButtonAction?.Invoke(false);
         }
 
         public virtual void Exit()
@@ -192,6 +209,8 @@ namespace Unit
         {
             isCancel = true;
         }
+
+        public virtual void Skip() => isSkip = true;
     } // 单位状态基类
 
     public class StateMachine
@@ -377,6 +396,7 @@ namespace Unit
             base.Enter(_position);
             Central.Instance.ClickEvent.AddListener(GetClick);
             Central.Instance.CancelEvent.AddListener(Cancel);
+            Central.Instance.SkipEvent.AddListener(Skip);
             MapManager.Instance.HighLightMovePath(
                 unit.cell.location,
                 unit.unitElement.currentSpeed,
@@ -390,6 +410,7 @@ namespace Unit
             unit.ActionEnd(); // 延迟唤起行动结束事件，方便做行动插入
             Central.Instance.ClickEvent.RemoveListener(GetClick);
             Central.Instance.CancelEvent.RemoveListener(Cancel);
+            Central.Instance.SkipEvent.RemoveListener(Skip);
             MapManager.Instance.DisableAllCell();
             base.Exit();
         }
@@ -403,16 +424,18 @@ namespace Unit
                     unit,
                     ActionType.Move,
                     clickPosition,
-                    true
+                    true,
+                    false
                 ));
                 unit.unitElement.DecreaseCurrentSpeed(
                     MapManager.Instance.FindCellByLocation(clickPosition).distance
                     );
                 stateMachine.ChangeState(unit.idleState, Vector2.zero);
             }
-            if (isCancel)
+            if (isCancel && unit.currentCommand != null && unit.currentCommand.canCancel)
             {
                 MapManager.Instance.ClaerAllCellPath();
+                UnitCommandManager.Instance.ClearSequence();
                 stateMachine.ChangeState(unit.idleState, Vector2.zero);
             }
         }
@@ -438,11 +461,15 @@ namespace Unit
             base.Enter(_position);
             Central.Instance.ClickEvent.AddListener(GetClick);
             Central.Instance.CancelEvent.AddListener(Cancel);
+            Central.Instance.SkipEvent.AddListener(Skip);
             MapManager.Instance.EnableCellByRange(
                 unit.location,
                 1,
                 "Chebyshev"
                 );
+
+            if (unit.currentCommand != null)
+                CardUI.OpenSkipButtonAction?.Invoke(unit.currentCommand.canSkip);
         }
 
         /// <summary>
@@ -455,6 +482,7 @@ namespace Unit
         {
             Central.Instance.ClickEvent.RemoveListener(GetClick);
             Central.Instance.CancelEvent.RemoveListener(Cancel);
+            Central.Instance.SkipEvent.RemoveListener(Skip);
 
             unit.ActionEnd(); // 延迟唤起行动结束事件，方便做行动插入
             //Central.Instance.ActionStart?.Invoke(); 
@@ -472,12 +500,22 @@ namespace Unit
                     unit,
                     ActionType.Melee,
                     clickPosition,
-                    true
+                    true,
+                    false
                 ));
                 unit.unitElement.DecreaseAttackTime(1);
                 stateMachine.ChangeState(unit.idleState, Vector2.zero);
             }
-            if (isCancel) stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            if (isSkip && unit.currentCommand != null && unit.currentCommand.canSkip)
+            {
+                unit.unitElement.DecreaseAttackTime(1);
+                stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            }
+            if (isCancel && unit.currentCommand != null && unit.currentCommand.canCancel)
+            {
+                UnitCommandManager.Instance.ClearSequence();
+                stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            }
         }
 
         private bool ExitCondition()
@@ -501,17 +539,22 @@ namespace Unit
             base.Enter(_position);
             Central.Instance.ClickEvent.AddListener(GetClick);
             Central.Instance.CancelEvent.AddListener(Cancel);
+            Central.Instance.SkipEvent.AddListener(Skip);
             MapManager.Instance.EnableCellByRange(
                 unit.location,
                 unit.unitElement.rangedRadius,
                 "Manhattan"
                 );
+
+            if (unit.currentCommand != null)
+                CardUI.OpenSkipButtonAction?.Invoke(unit.currentCommand.canSkip);
         }
 
         public override void Exit()
         {
             Central.Instance.ClickEvent.RemoveListener(GetClick);
             Central.Instance.CancelEvent.RemoveListener(Cancel);
+            Central.Instance.SkipEvent.RemoveListener(Skip);
 
             unit.ActionEnd(); // 延迟唤起行动结束事件，方便做行动插入
             //Central.Instance.ActionStart?.Invoke();
@@ -528,12 +571,22 @@ namespace Unit
                     unit,
                     ActionType.Ranged,
                     clickPosition,
-                    true
+                    true,
+                    false
                 ));
                 unit.unitElement.DecreaseAttackTime(1);
                 stateMachine.ChangeState(unit.idleState, Vector2.zero);
             }
-            if (isCancel) stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            if (isSkip && unit.currentCommand != null && unit.currentCommand.canSkip)
+            {
+                unit.unitElement.DecreaseAttackTime(1);
+                stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            }
+            if (isCancel && unit.currentCommand != null && unit.currentCommand.canCancel)
+            {
+                UnitCommandManager.Instance.ClearSequence();
+                stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            }
         }
 
         private bool ExitCondition()
@@ -557,6 +610,7 @@ namespace Unit
             base.Enter(_position);
             Central.Instance.ClickEvent.AddListener(GetClick);
             Central.Instance.CancelEvent.AddListener(Cancel);
+            Central.Instance.SkipEvent.AddListener(Skip);
             MapManager.Instance.EnableCellByRange(
                 unit.location,
                 1,
@@ -568,7 +622,7 @@ namespace Unit
         {
             Central.Instance.ClickEvent.RemoveListener(GetClick);
             Central.Instance.CancelEvent.RemoveListener(Cancel);
-            UnitManager.Instance.CreateUnit(clickPosition);
+            Central.Instance.SkipEvent.RemoveListener(Skip);
 
             unit.ActionEnd(); // 延迟唤起行动结束事件，方便做行动插入
             MapManager.Instance.DisableAllCell();
@@ -579,8 +633,14 @@ namespace Unit
         {
             base.Update();
             if (ExitCondition())
+            {
                 stateMachine.ChangeState(unit.idleState, Vector2.zero);
-            if (isCancel) stateMachine.ChangeState(unit.idleState, Vector2.zero);
+                UnitManager.Instance.CreateUnit(clickPosition);
+            }
+            if (isCancel && unit.currentCommand != null && unit.currentCommand.canCancel)
+                stateMachine.ChangeState(unit.idleState, Vector2.zero);
+            if (isSkip && unit.currentCommand != null && unit.currentCommand.canSkip)
+                stateMachine.ChangeState(unit.idleState, Vector2.zero);
         }
 
         private bool ExitCondition()
@@ -641,7 +701,8 @@ namespace Unit
                     unit,
                     ActionType.Move,
                     clickPosition,
-                    true
+                    true,
+                    false
                 ));
                 if (!isBonusMove)
                 {
@@ -654,6 +715,7 @@ namespace Unit
             if (isCancel)
             {
                 MapManager.Instance.ClaerAllCellPath();
+                UnitCommandManager.Instance.ClearSequence();
                 stateMachine.ChangeState(unit.idleState, Vector2.zero);
             }
         }
@@ -689,4 +751,70 @@ namespace Unit
 
         public void OpenSquare() => square.enabled = true;
     }
+
+    public partial class Units
+    {
+        public void ApplyKnockback(Vector2 sourcePosition, int distance, int additionalDamage = 0)
+        {
+            // 启动协程执行击退动画和格子逻辑
+            StartCoroutine(KnockbackCoroutine(sourcePosition, distance, additionalDamage));
+        }
+
+        private IEnumerator KnockbackCoroutine(Vector2 sourcePosition, int distance, int additionalDamage)
+        {
+            Vector2 delta = location - sourcePosition;
+            Units other = null;
+
+            for (int i = 0; i < distance; i++)
+            {
+                Vector2 nowLocation = location;
+                Vector2 nextLocation = location + delta;
+                if (nextLocation.x < 0 || nextLocation.y < 0 ||
+                    nextLocation.x >= MapManager.Instance.GetMapHeight() ||
+                    nextLocation.y >= MapManager.Instance.GetMapWidth()) break;
+
+                MapCell nextCell = MapManager.Instance.FindCellByLocation(nextLocation);
+                MapCell nowCell = MapManager.Instance.FindCellByLocation(nowLocation);
+
+                if (nextCell == null || !nextCell.IsWalkable(isPlayer))
+                    break;
+
+                Vector3 targetPos = nextCell.Position;
+
+                if (nextCell.unit != null)
+                {
+                    other = nextCell.unit;
+                    while (Vector2.Distance(transform.position, targetPos) > 0.01f)
+                    {
+                        transform.position = Vector2.MoveTowards(transform.position, targetPos, 5f * Time.deltaTime);
+                        yield return null;
+                    }
+
+                    yield return new WaitForSeconds(0.025f);
+                    other.unitElement.GetHit(1 + additionalDamage);
+                    unitElement.GetHit(1 + additionalDamage);
+                    transform.position = nowCell.Position;
+                    break;
+                }
+
+                MapCell oldCell = cell;
+                oldCell.CellRelease();
+
+                while (Vector2.Distance(transform.position, targetPos) > 0.01f)
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, targetPos, 5f * Time.deltaTime);
+                    yield return null;
+                }
+
+                // 到达目标格，更新位置与注册
+                transform.position = targetPos;
+                location = nextLocation;
+                cell = nextCell;
+                nextCell.CellRegister(this);
+
+                yield return null;
+            }
+            ActionEnd();
+        }
+    } // 单位击退
 }
