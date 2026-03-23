@@ -24,3 +24,5 @@ MonoBehaviour:
   maxi: 3
   traits: []
   unitPrefab: {fileID: 7381929839258633857, guid: 68af61aed6968f44cb7d2ca0c6cf5d8d, type: 3}
+  isMeleeInclination: 1
+  isRangeInclination: 0

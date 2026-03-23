@@ -40,6 +40,7 @@ namespace Unit
             currentHealth = health;
             ResetHealthText();
             unit = GetComponent<Units>();
+            Central.Instance.UnitNumChangeEvent?.Invoke();
         }
 
         public bool CheckTraits(string _traitName)
@@ -68,12 +69,26 @@ namespace Unit
 
         public void DecreaseHealth(int _tmp)
         {
+            if (currentShield > 0)
+            {
+                if (currentShield < _tmp)
+                {
+                    _tmp -= currentShield;
+                    currentShield = 0;
+                }
+                else
+                {
+                    currentShield -= _tmp;
+                    _tmp = 0;
+                }
+            }
             currentHealth -= _tmp;
             ResetHealthText();
 
             if (currentHealth <= 0)
             {
                 Central.Instance.UnitDieEvent?.Invoke(unit);
+                Central.Instance.UnitNumChangeEvent?.Invoke();
                 Destroy(gameObject);
             }
         }

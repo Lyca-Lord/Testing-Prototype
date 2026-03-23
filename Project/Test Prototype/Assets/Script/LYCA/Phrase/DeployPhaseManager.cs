@@ -42,11 +42,13 @@ public class DeployPhaseManager : MonoBehaviour, IInitialiazer
 
         // 构建敌人队列：随机打乱后取前 N 个
         _enemyQueue.Clear();
-        List<UnitInfo> enemyPool = new(enemyUnitBox.unitInfos);
-        Shuffle(enemyPool);
-        int count = Mathf.Min(enemyDeployCount, enemyPool.Count);
-        for (int i = 0; i < count; i++)
-            _enemyQueue.Enqueue(enemyPool[i]);
+        //List<UnitInfo> enemyPool = new(enemyUnitBox.unitInfos);
+        //Shuffle(enemyPool);
+        //int count = Mathf.Min(enemyDeployCount, enemyPool.Count);
+        //for (int i = 0; i < count; i++)
+        //    _enemyQueue.Enqueue(enemyPool[i]);
+        foreach(var info in enemyUnitBox.unitInfos)
+            _enemyQueue.Enqueue(info);
 
         BeginPlayerDeploy();
     }

@@ -63,6 +63,7 @@ public class Central : MonoBehaviour
 
     [Header("Unit Event")]
     [HideInInspector] public UnityEvent<Units> UnitDieEvent;
+    [HideInInspector] public UnityEvent UnitNumChangeEvent;
 
     private void Awake()
     {
@@ -149,6 +150,7 @@ public class Central : MonoBehaviour
         DeployingPhaseEnd ??= new UnityEvent();
 
         UnitDieEvent ??= new UnityEvent<Units>();
+        UnitNumChangeEvent ??= new UnityEvent();
     }
 
     public void ClearAllUnityEvents()
@@ -190,6 +192,7 @@ public class Central : MonoBehaviour
         DeployingPhaseEnd?.RemoveAllListeners();
         
         UnitDieEvent?.RemoveAllListeners();
+        UnitNumChangeEvent?.RemoveAllListeners();
     }
 
     private void OnDestroy()

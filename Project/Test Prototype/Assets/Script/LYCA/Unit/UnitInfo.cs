@@ -30,5 +30,9 @@ namespace Unit
 
         [Header("Prefab")]
         public GameObject unitPrefab;
+
+        [Header("AI Tag")]
+        public bool isMeleeInclination;
+        public bool isRangeInclination;
     }
 }

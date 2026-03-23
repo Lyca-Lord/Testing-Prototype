@@ -131,6 +131,7 @@ namespace Map
                 if (cell.unit != null && Check(cell.unit)) // 包含单位且通过检查
                 {
                     cell.EnableClick();
+                    cell.unit.OpenPickIndicator();
                 }
             }
         } // 允许所有包含单位的格子被点击
@@ -140,6 +141,7 @@ namespace Map
             foreach (var cell in cellList)
             {
                 cell.DisableClick();
+                if (cell.unit != null) cell.unit.ClosePickIndicator();
             }
         }
 

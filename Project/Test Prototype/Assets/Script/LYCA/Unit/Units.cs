@@ -1,4 +1,3 @@
-using DG.Tweening;
 using Map;
 using System.Collections;
 using System.Collections.Generic;
@@ -737,6 +736,7 @@ namespace Unit
         [Header("Attach")]
         public List<SpriteRenderer> icons;
         public List<TextMeshPro> tmps;
+        public SpriteRenderer pickIndicator;
         public SpriteRenderer square;
 
         public void ChangeSortingOverlay(int _order)
@@ -745,11 +745,21 @@ namespace Unit
             foreach (var icon in icons) icon.sortingOrder = _order;
             foreach (var tmp in tmps) tmp.sortingOrder = _order;
             square.sortingOrder = _order - 1;
+            pickIndicator.sortingOrder = _order + 1;
+
+            pickIndicator.enabled = false;
+            Animator ani = pickIndicator.GetComponent<Animator>();
+            var stateInfo = ani.GetCurrentAnimatorStateInfo(0);
+            ani.Play(stateInfo.shortNameHash, 0, Time.time);
         }
 
         public void CloseSquare() => square.enabled = false;
 
         public void OpenSquare() => square.enabled = true;
+
+        public void OpenPickIndicator() => pickIndicator.enabled = true;
+
+        public void ClosePickIndicator() => pickIndicator.enabled = false;
     }
 
     public partial class Units

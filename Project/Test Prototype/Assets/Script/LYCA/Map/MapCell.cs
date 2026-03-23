@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unit;
+using UnityEditor;
 using UnityEngine;
 
 namespace Map
@@ -163,6 +165,25 @@ namespace Map
                 _cell.pathIndicator.gameObject.SetActive(false);
             }
         }
+
+        public void PickThisCell()
+        {
+            StartCoroutine(Enumerator());
+
+            IEnumerator Enumerator()
+            {
+                ClickDown();
+                yield return new WaitForSeconds(.15f);
+                Debug.Log("Click_Pick");
+                ClickUp();
+                if (isEnable)
+                {
+                    Central.Instance.ClickEvent?.Invoke(location);
+                    if (unit != null) Central.Instance.UnitSelectEvent?.Invoke(unit); // 思考，这个真的要区分吗
+                    if (movePath.Count > 0) CloseAllPathIndicator();
+                } // 核心要素，鼠标点击检测
+            }
+        } // 为电脑玩家提供的选中方格接口
     }
 
     public partial class MapCell
