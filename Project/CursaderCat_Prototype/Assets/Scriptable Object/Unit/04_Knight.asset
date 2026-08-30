@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ffcdae665ef83d4bb0475c48bec9686, type: 3}
+  m_Name: 04_Knight
+  m_EditorClassIdentifier: 
+  unitName: 04_Knight
+  titile: "\u9A91\u58EB"
+  description: "\u8D39\u7528\u4E3A5\uFF0C\u653B\u51FB\u524D\u5FC5\u987B\u79FB\u52A8\u4E00\u683C\uFF0C\u8FD1\u6218\u540E\u63A8\u79BB\u654C\u4EBA\u4E00\u683C"
+  unitSprite: {fileID: 21300000, guid: 8a65145d91181524cba99b85db762802, type: 3}
+  maxHP: 0
+  attack: 0
+  defense: 0
+  speed: 0
+  attackRange: 0
+  cost: 5
+  maxi: 1
+  traits: []
+  unitPrefab: {fileID: 3835930296485734483, guid: ced94c35b339fc94f8bb663932edd697, type: 3}
+  isMeleeInclination: 0
+  isRangeInclination: 0

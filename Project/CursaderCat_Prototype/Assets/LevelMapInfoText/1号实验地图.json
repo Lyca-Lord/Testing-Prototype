@@ -1,0 +1,42 @@
+{
+    "gridWidth": 10,
+    "gridHeight": 10,
+    "grids": [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    ],
+    "playerFlagPositions": [
+        {"x": 6, "y": 3},
+        {"x": 8, "y": 1}
+    ],
+    "enemyFlagPositions": [
+        {"x": 1, "y": 8},
+        {"x": 3, "y": 6}
+    ],
+    "originEnemyInfos": [
+        {
+            "unitName": "02_Enemy_Shooter",
+            "position": {"x": 0, "y": 9}
+        },
+        {
+            "unitName": "02_Enemy_Shooter",
+            "position": {"x": 2, "y": 6}
+        },
+        {
+            "unitName": "01_Enemy_Goblin",
+            "position": {"x": 2, "y": 7}
+        },
+        {
+            "unitName": "01_Enemy_Goblin",
+            "position": {"x": 4, "y": 5}
+        }
+    ]
+}

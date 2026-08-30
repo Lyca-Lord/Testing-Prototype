@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8786b4ae405e3c46b97b27dad8bb850, type: 3}
+  m_Name: PlayerBox1
+  m_EditorClassIdentifier: 
+  boxName: PlayerBox1
+  unitInfos:
+  - {fileID: 11400000, guid: 0236dd95aeb6ab84189efd742946030a, type: 2}
+  - {fileID: 11400000, guid: 0f75688a3dca17a4eb6650a06f8ef793, type: 2}
+  - {fileID: 11400000, guid: 32dd8ec545c7d0345bd38d17796b0e87, type: 2}

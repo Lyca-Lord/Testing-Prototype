@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f8bc74c823fe8c4ca802beedc3d540f, type: 3}
+  m_Name: LevelInfo0
+  m_EditorClassIdentifier: 
+  mapInfo: {fileID: 11400000, guid: 29da96b3ccc2d6840890b88646619bea, type: 2}
+  enemyDeck: {fileID: 11400000, guid: d81747dca2f93e5469a4f11b4ec7a02c, type: 2}
+  enemyBox: {fileID: 11400000, guid: 20c9032947f0e5a4fa5678968b3a3baf, type: 2}
+  playerBox: {fileID: 11400000, guid: ee48a7f46a7706e4cb310860cc481d85, type: 2}
+  weightList:
+  - unitName: 01_Enemy_Goblin
+    weight: 0.33
+  - unitName: 02_Enemy_Shooter
+    weight: 0.33
+  armyScale: 2
+  retreatScale: 1
